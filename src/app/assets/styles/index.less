@@ -6,25 +6,66 @@ section.presolved-layout.master {
 
     background-color: #F0F2F5;
     min-height: 100vh;
+
     header.presolved-layout-header.main {
-        display: flex;        
+        display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+
         .primary-items {
             display: flex;
             flex: 1 1 auto;
             gap: 20px;
-          
+
         }
 
-        .secondary-items {
-         
-        }
+        .secondary-items {}
     }
 
-    main.presolved-layout-content{
+    main.presolved-layout-content {
         padding: 0px 50px;
         min-height: 100vh;
+
+        .presolved-tabs.presolved-tabs-top.presolved-tabs-editable.presolved-tabs-large.presolved-tabs-card.presolved-tabs-editable-card {
+            .presolved-tabs-nav {
+                margin: 0 !important;
+            }
+
+            .presolved-tabs-content-holder {
+                background-color: #fff;
+
+                section.main-content {
+                    display: flex;
+
+                    .dialer-section {
+                        min-height: 100vh;
+                        padding: 30px 20px;
+
+                        box-shadow: 0 0 3px 0px #ccc;
+                        flex: 1 1 350px;
+
+                        .dialercontainer {
+                            margin-top: 30px;
+                            min-height: 200px;
+                            background-color: #f2f2f2;
+                            border-radius: 10px;
+
+                        }
+
+                        .contact-attributes {                            
+                            .presolved-statistic {
+                                margin: 20px 0;
+                            }
+                        }
+                    }
+
+                    .content-section {
+                        flex: 1 1 100%;
+                        padding: 5px 20px;
+                    }
+                }
+            }
+        }
     }
 
 }
