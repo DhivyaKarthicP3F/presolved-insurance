@@ -1,8 +1,10 @@
 import React from 'react';
 
-import 'antd/dist/antd.less';
-import 'antd/lib/style/themes/default.less';
-import './assets/style/layout.less';
+/* import 'antd/dist/antd.less';
+import 'antd/lib/style/themes/default.less'; */
+
+import 'antd/dist/reset.css';
+
 import { store } from './store';
 import { Provider } from 'react-redux';
 import { Router } from '@gatsbyjs/reach-router';

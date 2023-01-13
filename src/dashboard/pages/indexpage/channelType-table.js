@@ -14,6 +14,9 @@ const ChannelTypeTable = (props) => {
     const channel = useSelector((state) => state.channels)
 
     let grouped = _.groupBy(channel.tasks, data => data?.channelType);
+    let emailChannels=  _.filter(channel.data, data => data?.channelType =='email');
+
+    console.log({emailChannels});
 
     const [open, setOpen] = useState(false);
     const initialState = {
@@ -143,16 +146,30 @@ const ChannelTypeTable = (props) => {
             key: 'id',
         },
         {
+            title: 'Subject',
+            dataIndex: 'subject',
+            key: 'subject',
+            render:(text,record,index)=>{
+                let attributes=JSON.parse(record.contactAttributes);
+                return attributes.subject
+            }
+        },
+        {
+            title: 'From',
+            dataIndex: 'from',
+            key: 'from',
+            render:(text,record,index)=>{
+                let attributes=JSON.parse(record.contactAttributes);
+                return attributes.from
+            }
+        },
+
+        {
             title: 'AssignTo',
             dataIndex: 'assignTo',
             key: 'assignTo',
         },
-        {
-            title: 'Number of tasks',
-            dataIndex: 'noOfTasks',
-            key: 'noOfTasks',
 
-        },
         {
             title: 'CreatedAt',
             dataIndex: 'createdAt',
@@ -168,10 +185,8 @@ const ChannelTypeTable = (props) => {
     ];
 
     return (
-        <>
-            <Tabs
-
-                defaultActiveKey="chat"
+        <section>
+            <Tabs defaultActiveKey="chat"
                 items={[
                     {
                         label: <Typography.Title level={5} style={{ paddingLeft: '1px' }}>Voice</Typography.Title>,
@@ -207,7 +222,7 @@ const ChannelTypeTable = (props) => {
                                 size='large'
                                 borderRadius={10}
                                 columns={columns_email}
-                                dataSource={grouped.email}
+                                dataSource={emailChannels}
                                 scroll={{ x: 400, y: 250 }}
                                 onRow={(record, rowIndex) => {
                                     return {
@@ -222,7 +237,7 @@ const ChannelTypeTable = (props) => {
                     },
                 ]}
             />
-            <Drawer title="Basic Drawer" placement="right" onClose={onClose} open={open} width="50%" >
+            <Drawer title="Basic Drawer" placement="right" onClose={onClose} open={open} width="80%" >
                 <Card style={{ minHeight: '100vh' }}>
                     {
                         state.selected != null &&
@@ -233,13 +248,14 @@ const ChannelTypeTable = (props) => {
                                     width: "100%",
                                     height: "100vh",
                                     pointerEvents: "all",
+                                    border: "none",
                                 }}
                             />
                         </div>
                     }
                 </Card>
             </Drawer>
-        </>
+        </section>
     );
 }
 export default ChannelTypeTable;
