@@ -47,15 +47,11 @@ class connectWrapper {
                 region: "us-east-1", // REQUIRED for `CHAT`, optional otherwise
                 softphone: {
                     // optional, defaults below apply if not provided
-                    allowFramedSoftphone: true, // optional, defaults to false
+                    allowFramedSoftphone: false, // optional, defaults to false
                     disableRingtone: false, // optional, defaults to false
                     ringtoneUrl: "./ringtone.mp3" // optional, defaults to CCP’s default ringtone if a falsy value is set
                 },
-                pageOptions: {
-                    //optional
-                    enableAudioDeviceSettings: false, //optional, defaults to 'false'
-                    enablePhoneTypeSettings: true //optional, defaults to 'true'
-                },
+               
                 ccpAckTimeout: 5000, //optional, defaults to 3000 (ms)
                 ccpSynTimeout: 3000, //optional, defaults to 1000 (ms)
                 ccpLoadTimeout: 10000 //optional, defaults to 5000 (ms)

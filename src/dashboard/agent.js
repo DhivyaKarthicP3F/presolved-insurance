@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Router } from '@gatsbyjs/reach-router';
 import { useDispatch, useSelector } from 'react-redux';
 
-import 'antd/dist/antd.less';
-import 'antd/lib/style/themes/default.less';
+/* import 'antd/dist/antd.less';
+import 'antd/lib/style/themes/default.less'; */
+import 'antd/dist/reset.css';
+
 import './assets/style/layout.less';
 import { getAllEmails } from './api/emails';
 import { getAllChannels, getAllUsersFromConnect, getTaskTemplates } from './api/taskTemplates';
