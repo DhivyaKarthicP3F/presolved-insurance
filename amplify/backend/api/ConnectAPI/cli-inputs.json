@@ -11,13 +11,21 @@
         ]
       }
     },
-    "/assets": {
-      "name": "/assets",
-      "lambdaFunction": "assetsHandler",
+    "/meetings": {
+      "name": "/meetings",
+      "lambdaFunction": "Meetings",
       "permissions": {
-        "setting": "private",
+        "setting": "protected",
         "auth": [
-          "read"
+          "create",
+          "read",
+          "update"
+        ],
+        "guest": [
+          "create",
+          "read",
+          "update",
+          "delete"
         ]
       }
     }

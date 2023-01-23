@@ -17,32 +17,41 @@
         "presolvedinsurance": {}
       },
       "storage": {
-        "psemailbucket": {}
+        "psemailbucket": {},
+        "chimemeetings": {}
       },
       "function": {
         "presolvedinsurancelayer": {
           "deploymentBucketName": "amplify-presolvedtenant-test-211355-deployment",
-          "s3Key": "amplify-builds/presolvedinsurancelayer-LambdaLayerVersiond94d0b10-build.zip"
+          "s3Key": "amplify-builds/presolvedinsurancelayer-LambdaLayerVersion13063f5c-build.zip"
         },
         "GetUsersList": {
           "deploymentBucketName": "amplify-presolvedtenant-test-211355-deployment",
-          "s3Key": "amplify-builds/GetUsersList-5a346b3179465a43546f-build.zip"
+          "s3Key": "amplify-builds/GetUsersList-3135375a2f32646b4b45-build.zip"
         },
         "presolvedinsurancemsgraph": {
           "deploymentBucketName": "amplify-presolvedtenant-test-211355-deployment",
-          "s3Key": "amplify-builds/presolvedinsurancemsgraph-LambdaLayerVersione00bccc2-build.zip"
+          "s3Key": "amplify-builds/presolvedinsurancemsgraph-LambdaLayerVersion3ece577d-build.zip"
         },
         "GetMails": {
           "deploymentBucketName": "amplify-presolvedtenant-test-211355-deployment",
-          "s3Key": "amplify-builds/GetMails-614b6437617a51304865-build.zip"
+          "s3Key": "amplify-builds/GetMails-486754474862456a5571-build.zip"
         },
         "DownloadEmail": {
           "deploymentBucketName": "amplify-presolvedtenant-test-211355-deployment",
-          "s3Key": "amplify-builds/DownloadEmail-326d7857653279536d50-build.zip"
+          "s3Key": "amplify-builds/DownloadEmail-364951714d466f4c5a38-build.zip"
         },
         "assetsHandler": {
           "deploymentBucketName": "amplify-presolvedtenant-test-211355-deployment",
           "s3Key": "amplify-builds/assetsHandler-34327554427a33383159-build.zip"
+        },
+        "Meetings": {
+          "deploymentBucketName": "amplify-presolvedtenant-test-211355-deployment",
+          "s3Key": "amplify-builds/Meetings-344f4336312f43783078-build.zip"
+        },
+        "SendChatMessage": {
+          "deploymentBucketName": "amplify-presolvedtenant-test-211355-deployment",
+          "s3Key": "amplify-builds/SendChatMessage-306b313569413368642b-build.zip"
         }
       },
       "api": {

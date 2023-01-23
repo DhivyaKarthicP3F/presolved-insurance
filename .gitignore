@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/.old-src
 /.pnp
 .pnp.js
 .amplify - Copy

@@ -2,9 +2,8 @@
 	ENV
 	REGION
 	STORAGE_PSEMAILBUCKET_BUCKETNAME
-Amplify Params - DO NOT EDIT */ const {
-  downloadMessage,
-} = require("/opt/downloadMessage");
+Amplify Params - DO NOT EDIT */
+const { downloadMessage } = require("/opt/downloadMessage");
 const { getAttachments } = require("/opt/getAttachments");
 const { downloadAttachment } = require("/opt/downloadAttachment");
 const { markEmailRead } = require("/opt/markEmailRead");

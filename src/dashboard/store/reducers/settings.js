@@ -1,79 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  /*   isConnected:false,
-    activeTask:null,
-    showConnect: false,
-    contactData: null,
-    state: null, agentStates: [] */
-  isConnected: false,
-  activeTask: null,
-  showConnect: false,
-  contactData: null,
-  state: null,
-  agentStates: [
-    {
-      agentStateARN: 'arn:aws:connect:us-east-1:039289871235:instance/78e878e8-2ffd-4183-b1a8-8ca60d65a9ad/agent-state/7a94afc7-f196-4a58-b6f6-82443d71c6b3',
-      type: 'routable',
-      name: 'Available',
-      startTimestamp: null
-    },
-    {
-      agentStateARN: 'arn:aws:connect:us-east-1:039289871235:instance/78e878e8-2ffd-4183-b1a8-8ca60d65a9ad/agent-state/40774034-d82d-45b1-a98e-f1591f346058',
-      type: 'offline',
-      name: 'Offline',
-      startTimestamp: null
-    }
-  ],
-  eventName: 'onConnected',
-  name: 'Khizar',
-  username: 'a.khizar@p3fusion.com',
-  softphoneEnabled: true,
-  softphoneAutoAccept: false,
-  extension: '',
-  routingProfile: {
-    name: 'Basic Routing Profile',
-    routingProfileARN: 'arn:aws:connect:us-east-1:039289871235:instance/78e878e8-2ffd-4183-b1a8-8ca60d65a9ad/routing-profile/112b646c-4222-4264-ba3c-f88eb98d545d',
-    defaultOutboundQueue: {
-      queueARN: 'arn:aws:connect:us-east-1:039289871235:instance/78e878e8-2ffd-4183-b1a8-8ca60d65a9ad/queue/b5c6ce6e-ed86-48c5-a3a5-fb7ae25d1500',
-      name: 'BasicQueue',
-      queueId: 'arn:aws:connect:us-east-1:039289871235:instance/78e878e8-2ffd-4183-b1a8-8ca60d65a9ad/queue/b5c6ce6e-ed86-48c5-a3a5-fb7ae25d1500'
-    },
-    channelConcurrencyMap: {
-      CHAT: 2,
-      TASK: 1,
-      VOICE: 1
-    },
-    queues: [
-      {
-        queueARN: 'arn:aws:connect:us-east-1:039289871235:instance/78e878e8-2ffd-4183-b1a8-8ca60d65a9ad/queue/b5c6ce6e-ed86-48c5-a3a5-fb7ae25d1500',
-        name: 'BasicQueue',
-        queueId: 'arn:aws:connect:us-east-1:039289871235:instance/78e878e8-2ffd-4183-b1a8-8ca60d65a9ad/queue/b5c6ce6e-ed86-48c5-a3a5-fb7ae25d1500'
-      },
-      {
-        queueARN: 'arn:aws:connect:us-east-1:039289871235:instance/78e878e8-2ffd-4183-b1a8-8ca60d65a9ad/queue/agent/a1c4825c-d42d-403e-bab0-69e7eca8601f',
-        name: null,
-        queueId: 'arn:aws:connect:us-east-1:039289871235:instance/78e878e8-2ffd-4183-b1a8-8ca60d65a9ad/queue/agent/a1c4825c-d42d-403e-bab0-69e7eca8601f'
-      }
-    ],
-    routingProfileId: 'arn:aws:connect:us-east-1:039289871235:instance/78e878e8-2ffd-4183-b1a8-8ca60d65a9ad/routing-profile/112b646c-4222-4264-ba3c-f88eb98d545d'
-  },
-  agentPreferences: {},
-  permissions: [
-    'outboundCall',
-    'voiceId',
-    'ccpRealtimeContactLens',
-    'contactRecording',
-    'audioDeviceSettings'
-  ],
-  dialableCountries: [
-    'pr',
-    'us',
-    'ca',
-    'gb',
-    'mx'
-  ]
-
+  ccpInitiated: false,
+  agentStatus: 'offline',
 }
 
 export const settings = createSlice({
@@ -85,11 +14,17 @@ export const settings = createSlice({
         ...state,
         ...action.payload
       }
+    },
+    changeAgentAvailibility: (state,action) => {
+      return {
+        ...state,
+        agentStatus:action.payload
+      }
     }
   },
 })
 // Action creators are generated for each case reducer function
-export const { updateSettings } = settings.actions
+export const { updateSettings,changeAgentAvailibility } = settings.actions
 
 export default settings.reducer
 

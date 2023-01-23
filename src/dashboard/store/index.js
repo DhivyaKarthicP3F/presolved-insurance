@@ -6,6 +6,7 @@ import  emailReducer  from './reducers/emails';
 import  channelsReducer  from './reducers/channels';
 import  configReducer  from './reducers/config';
 import settingsReducer from './reducers/settings';
+import activeCallReducer from './reducers/activeCalls';
 
 const composeEnhancers = typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
     trace: true, 
@@ -18,7 +19,8 @@ export const store = configureStore({
         channels:channelsReducer,
         config:configReducer,
         emails:emailReducer,
-        settings:settingsReducer
+        settings:settingsReducer,
+        activeCall:activeCallReducer,
     }),
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: false
