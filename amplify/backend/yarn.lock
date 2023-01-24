@@ -730,9 +730,9 @@ acorn-walk@^8.1.1, acorn-walk@^8.2.0:
   integrity sha512-k+iyHEuPgSw6SbuDpGQM+06HQUa04DZ3o+F6CSzXMvvI5KMvnaEqXe+YVe555R9nn6GPt404fos4wcgpw12SDA==
 
 acorn@^8.4.1, acorn@^8.7.0:
-  version "8.8.1"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.8.1.tgz#0a3f9cbecc4ec3bea6f0a80b66ae8dd2da250b73"
-  integrity sha512-7zFpHzhnqYKrkYdUjF1HI1bzd0VygEGX8lFk4k5zVMqHEoES+P+7TKI+EvLO9WVMJ8eekdO0aDEK044xTXwPPA==
+  version "8.8.2"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.8.2.tgz#1b2f25db02af965399b9776b0c2c391276d37c4a"
+  integrity sha512-xjIYgE8HBrkpd/sJqOGNspf8uHG+NOHGOw6a/Urj8taM2EXfdNAH2oFcPeIFfsv3+kz/mJrS5VuMqbNLjCa2vw==
 
 agent-base@6, agent-base@^6.0.0, agent-base@^6.0.2:
   version "6.0.2"
@@ -1020,9 +1020,9 @@ concat-map@0.0.1:
   integrity sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==
 
 constructs@^3.3.125, constructs@^3.3.69:
-  version "3.4.222"
-  resolved "https://registry.yarnpkg.com/constructs/-/constructs-3.4.222.tgz#8b5ecf8ceee2101099b4d79e1afa6df7f7071367"
-  integrity sha512-b80Bb4LkbqjfI/PJzigmnEhMi28VYRV2h3RwRHYiuGRFSdP6TMjVtgY2kj5ZHKhARlail7WskqA1sBP8mg+NVw==
+  version "3.4.224"
+  resolved "https://registry.yarnpkg.com/constructs/-/constructs-3.4.224.tgz#3654fb1cd3d711eaf4ca056563369e1b12d77454"
+  integrity sha512-cwmg2cOXAmRlO5Iv+VBeD5zVFwVgmZM6S21IHyw3gqmYw/sjI7sIU/f0dYXH5MnELty5uKUCn2gjcnSbCHNxRg==
 
 core-util-is@~1.0.0:
   version "1.0.3"

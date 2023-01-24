@@ -66,6 +66,7 @@ async function getSettings(clientId, secretName, region, tenantId) {
       "chat.readwrite",
       "chatMessage.send",
       "chatMessage.read",
+      "Teamwork.Migrate.All",
     ],
   };
   //console.log("Settings: ", settings);

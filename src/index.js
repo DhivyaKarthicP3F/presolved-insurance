@@ -7,6 +7,7 @@ import Suspence from "./widgets/suspence";
 import { Provider } from "react-redux";
 import { store } from "./dashboard/store";
 import ChatWigetForTesting from "./playground/chat";
+import AWSSDK from "./playground/connectSDK";
 
 const App = React.lazy(() => import('./dashboard/index'))
 const root = document.getElementById("root");
@@ -20,6 +21,7 @@ ReactDOM.render(
         <Router basepath="/">
           <App path="/*" />
           <ChatWigetForTesting  path="/test/chat/*" />
+          <AWSSDK  path="/test/aws/*" />
         </Router>
       </Suspense>
     </Provider>,
