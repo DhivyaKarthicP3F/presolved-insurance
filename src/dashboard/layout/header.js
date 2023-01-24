@@ -1,14 +1,16 @@
 import { Layout, theme, Space, Button, Badge, Avatar,Spin , Typography, Dropdown, notification,Popover } from 'antd'
 import React, { useState, useEffect } from 'react'
-import logo from '../assets/images/logo.svg'
+import logo from '../assets/images/p3f-logo.png'
 import {CloudDownloadOutlined, AmazonOutlined, UserOutlined, SearchOutlined, BellOutlined, QuestionOutlined, PoweroffOutlined } from '@ant-design/icons';
 import { Link, navigate } from '@gatsbyjs/reach-router';
 import { Auth } from 'aws-amplify';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeAgentAvailibility } from '../../../src/dashboard/store/reducers/settings';
+import { logoutUser, updateUser } from '../store/reducers/user';
 
 const AgentMainHeader = (props) => {
-
+    const { useToken } = theme;
+    const { token } = useToken();
     const dispatch=useDispatch()
     const user = useSelector((state) => state.user)
     const settings = useSelector((state) => state.settings)
@@ -24,6 +26,7 @@ const AgentMainHeader = (props) => {
         }
         return result
     }
+    
     const items = [{
         key: '1',
         icon: <UserOutlined />,
@@ -41,6 +44,7 @@ const AgentMainHeader = (props) => {
                 btn: <Button type='primary' onClick={() => {
                     Auth.signOut()
                         .then(data => {
+                            dispatch(logoutUser())
                             console.log(data);
                             navigate('/login')
                         })
@@ -88,7 +92,7 @@ const AgentMainHeader = (props) => {
                     //Header renders when user session  is active
                     <Header className="main" style={{ background: colorBgContainer }}>
                         <div className='primary-items'>
-                            <div className="logo" > <Link to="/"><img width={132} src={logo} alt="logo" /></Link></div>
+                            <div className="logo" > <Link to="/"><img width={180} src={logo} alt="logo" /></Link></div>
                             <div className='dialer-status'>
                                 <Space size={24}>
                                     <Button shape='round' type='default' icon={<PoweroffOutlined color='red' />} >{formatTime(state.settings.contactDuration)}</Button>
@@ -135,7 +139,7 @@ const AgentMainHeader = (props) => {
                                 </Badge>
                                 <Dropdown menu={{ items }}>
                                     <Space>
-                                        <Avatar style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />} />
+                                        <Avatar style={{ backgroundColor: token.colorPrimary }} icon={<UserOutlined />} />
                                         <Typography.Text strong>{getUserName()}</Typography.Text>
                                     </Space>
                                 </Dropdown>

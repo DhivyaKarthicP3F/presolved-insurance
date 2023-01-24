@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Router } from '@gatsbyjs/reach-router';
-import { ConfigProvider, Layout } from 'antd';
+import { ConfigProvider, Layout,theme  } from 'antd';
 import 'antd/dist/reset.css';
 import './assets/stylesheet/index.less'
 import AgentMainHeader from './layout/header';
@@ -13,7 +13,7 @@ import ConnectCCP from './pages/connect';
 const AgentHomePage = React.lazy(() => import('./pages/agent_home'))
 const AgentSAMLPage = React.lazy(() => import('./pages/login'))
 
-const defaultThemeData = { borderRadius: 6, colorPrimary: '#00ae42', fontFamily: 'Poppins', fontSize: 15, }
+const defaultThemeData = { borderRadius: 6, colorPrimary: '#407db5', fontFamily: 'Poppins', fontSize: 14, }
 const componentSize = 'medium'
 
 const AppIndexPage = () => {
@@ -32,7 +32,7 @@ const AppIndexPage = () => {
 
 
   return (
-    <ConfigProvider prefixCls='presolved' theme={{ token: defaultThemeData }} componentSize={componentSize} >
+    <ConfigProvider prefixCls='presolved' theme={{  token: defaultThemeData }} componentSize={componentSize} >
       <Layout className='master'>
         <AgentMainHeader />
         <Router >

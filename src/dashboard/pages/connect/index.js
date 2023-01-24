@@ -14,7 +14,7 @@ import { createChannel } from './api'
 import '../../../aws-streams/connect-streams'
 import '../../../aws-streams/amazon-connect-customer-profiles'
 import '../../../aws-streams/amazon-connect-task'
-import { activeProducts, customer360, userProfilesMock, policyDetails } from '../../mock/customerProfiles'
+import { activeProducts, customer360, userProfilesMock, policyDetails, recentHistory } from '../../mock/customerProfiles'
 import { updateCalls } from '../../store/reducers/activeCalls'
 const connectUrl = "https://p3fusion-qa.my.connect.aws/ccp-v2";
 
@@ -38,7 +38,7 @@ const ConnectCCP = (props) => {
         region: "us-east-1", // REQUIRED for `CHAT`, optional otherwise
         softphone: {
           // optional, defaults below apply if not provided
-          allowFramedSoftphone: false, // optional, defaults to false
+          allowFramedSoftphone: true, // optional, defaults to false
           disableRingtone: false, // optional, defaults to false
           ringtoneUrl: "./ringtone.mp3" // optional, defaults to CCP’s default ringtone if a falsy value is set
         },
@@ -176,9 +176,11 @@ const ConnectCCP = (props) => {
     let customerProfile= array[Math.floor(Math.random() * array.length)];
     return {
       customerProfile,
+      recentHistory:recentHistory(),
       customer360:customer360(),
       activeProducts:activeProducts(),
-      policyDetails:policyDetails()
+      policyDetails:policyDetails(),
+      
     }
   }
 

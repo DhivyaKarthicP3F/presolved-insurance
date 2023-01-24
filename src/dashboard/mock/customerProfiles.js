@@ -3546,8 +3546,7 @@ export const userProfilesMock = () =>
             "title": "mr",
             "picture": "men/54.jpg"
         }
-    ]
-
+]
 
 export const customer360 = () => {
     return {
@@ -3595,6 +3594,7 @@ export const activeProducts=()=>{
         "expiration_date": "2015-01-01",
     }]
 }
+
 export const policyDetails=()=>{
     return {
         "policy_effective_date": "2015-01-01",
@@ -3608,4 +3608,36 @@ export const policyDetails=()=>{
         "total_insured_value": "$0.00",
 
     }
+}
+
+export const recentHistory=()=>{
+    return [{
+        "task_name": "General Liability",
+        "task_status": "Completed",
+        "type":"Chat",
+        "assigned_to": "John Doe",
+        "due_date": "2023-01-01",
+        "duration":"30 min",
+        "nps":"8/10"
+    },
+    {
+        "task_name": "Change of Address",
+        "task_status": "In Progress",
+        "type":"Call",
+        "assigned_to": "Ricky Bobby",
+        "due_date": "2023-05-01",
+        "duration":"30 min",
+        "nps":"8/10"
+    },
+    {
+        "task_name":"Loss History",
+        "task_status": "In Progress",
+        "type":"Call",
+        "assigned_to": "Wayne Gretzky",
+        "due_date": "2023-10-01",
+        "duration":"26 min",
+        "nps":"8/10"
+    }
+
+    ]
 }

@@ -16,9 +16,7 @@ const AgentHomePage = (props) => {
       label: <Space size={1}><HomeOutlined /> <Typography.Text>Home</Typography.Text></Space>,
       children: <AgentDashboard />,
       key: 'home',
-    },
-
-    ],
+    }],
   })
 
 

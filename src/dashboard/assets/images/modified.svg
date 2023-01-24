@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="480pt" height="290pt" viewBox="0 0 278.951 72.772" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <g id="surface2" transform="matrix(0.742413, 0, 0, 0.742413, -150.745941, -29.418816)">
+    <path style="stroke:none;fill-rule:evenodd;fill:rgb(11.764706%,78.823529%,1.176471%);fill-opacity:1" d="M 209.250000 75.898438 L 222.300781 53.300781 L 235.351562 75.898438 L 222.300781 98.500000 L 209.250000 75.898438 "/>
+    <path style="stroke:none;fill-rule:evenodd;fill:rgb(25.098039%,49.019608%,70.980392%);fill-opacity:1" d="M 252.449219 100.500000 L 226.351562 100.500000 L 239.398438 77.898438 L 265.500000 77.898438 L 252.449219 100.500000 "/>
+    <path style="stroke:none;fill-rule:evenodd;fill:rgb(99.607843%,16.470588%,0.000000%);fill-opacity:1" d="M 252.449219 51.300781 L 265.500000 73.898438 L 239.398438 73.898438 L 226.351562 51.300781 L 252.449219 51.300781 "/>
+  </g>
+  <g id="surface4" transform="matrix(1, 0, 0, 1, -84.794006, -129.737823)">
+    <text style="fill: rgb(0, 65, 102); white-space: pre;" font-family="Sansation" font-size="48" transform="matrix(1,0,0,1,159.773436,173.85)">P3Fusion</text>
+    <text style="fill: rgb(64, 125, 181); white-space: pre;" font-family="Sansation" font-size="20" transform="matrix(1,0,0,1,89.728516,197.25)">Policies Processes Procedures</text>
+  </g>
+</svg>
