@@ -1,0 +1,21 @@
+{
+  "lambdaLayers": [
+    {
+      "type": "ProjectLayer",
+      "resourceName": "presolvedinsurancelayer",
+      "env": "test",
+      "version": "Always choose latest version",
+      "isLatestVersionSelected": true
+    }
+  ],
+  "permissions": {
+    "storage": {
+      "chimemeetings": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  }
+}

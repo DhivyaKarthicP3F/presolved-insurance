@@ -1,64 +1,31 @@
+import React, { Suspense } from "react";
+import ReactDOM from "react-dom";
 import { Router } from "@gatsbyjs/reach-router";
 import { Amplify } from "aws-amplify";
-import React, { Suspense } from "react";
-import { createRoot } from "react-dom/client";
-
-import NewAppMainPage from "./app";
 import oldAwsConfig from "./aws-exports";
-import "./gc-components/connect-streams";
-import DefaultErrorBoundary from "./gc-components/errorBoundary";
-import reportWebVitals from "./gc-components/reportWebVitals";
-//import PresolvedOnboardIndexPage from "./signupPage";
-//import EmailPage from "./emailViewer";
-import Suspence from "./suspence";
+import Suspence from "./widgets/suspence";
+import { Provider } from "react-redux";
+import { store } from "./dashboard/store";
+import ChatWigetForTesting from "./playground/chat";
 
-//const ChatWigetForTesting = React.lazy(() => import('./chat'));
-//const DashboardIndexPage = React.lazy(() => import('./dashboard'));
+const App = React.lazy(() => import('./dashboard/index'))
+const root = document.getElementById("root");
 
-
-//const AgentApp = React.lazy(() => import("./agent_app/"));
-/* const OnboardAddIndexPage = React.lazy(() => import('./onboarding'));
-const LandingPage = React.lazy(() => import('./landing_page')); */
-//connect.getLog().setEchoLevel(connect.LogLevel.CRITICAL);
-//const root = document.getElementById("root");
 Amplify.configure(oldAwsConfig);
-//Amplify.configure(awsExports);
 
+ReactDOM.render(
 
-const rootElement = document.getElementById("root");
-const root = createRoot(rootElement);
-
-
-root.render(
-  <React.StrictMode>
-    <Suspense fallback={<Suspence />}>
-      <DefaultErrorBoundary>
+    <Provider store={store}>
+      <Suspense fallback={<Suspence />}>
         <Router basepath="/">
-          <NewAppMainPage path="/*" />
-
-          {/*   <DashboardIndexPage path="/*" />
-          <NewAppMainPage path="/new/*" />
-          <DashboardIndexPage path="/app/*" />
-          <ChatWigetForTesting path="/chat/*" /> */}
-
-          {/*           <AgentApp path="/*" />
-          <AgentApp path="/agent/*" />
-          {
-          // <LandingPage path="/site/*" />
-          // <OnboardAddIndexPage path="/signup/*" />
-          }
-          <PresolvedOnboardIndexPage path="/signup/*" />
-          <EmailPage path="/email/*" /> */}
-
-
-
+          <App path="/*" />
+          <ChatWigetForTesting  path="/test/chat/*" />
         </Router>
-      </DefaultErrorBoundary>
-    </Suspense>
-  </React.StrictMode>
+      </Suspense>
+    </Provider>,
+  root
 );
 
-reportWebVitals();
 
 
 //to bulk delete

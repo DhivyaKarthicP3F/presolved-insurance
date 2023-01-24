@@ -62,6 +62,10 @@ async function getSettings(clientId, secretName, region, tenantId) {
       "user.read",
       "mail.readwrite",
       "mail.send",
+      "chat.create",
+      "chat.readwrite",
+      "chatMessage.send",
+      "chatMessage.read",
     ],
   };
   //console.log("Settings: ", settings);

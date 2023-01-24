@@ -2,7 +2,7 @@
   "version": "1",
   "cognitoConfig": {
     "identityPoolName": "presolvedinsurance_identitypool_23183491",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "presol23183491",
     "userPoolName": "presolvedinsurance_userpool_23183491",
     "autoVerifiedAttributes": [

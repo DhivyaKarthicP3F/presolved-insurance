@@ -1,0 +1,22 @@
+[
+  {
+    "Action": [
+      "chime:CreateMeeting",
+      "chime:CreateAttendee",
+      "chime:DeleteAttendee",
+      "chime:DeleteMeeting",
+      "chime:DescribeMeeting",
+      "chime:DescribeAttendee",
+      "chime:GetMeeting",
+      "chime:GetAttendee",
+      "chime:ListMeetings",
+      "chime:ListAttendees",
+      "chime:UpdateMeeting",
+      "chime:UpdateAttendee"      
+    ],
+    "Resource": [
+      "arn:aws:chime:*:*:meeting/*",
+      "arn:aws:chime:*:*:attendee/*"
+    ]
+  }
+]

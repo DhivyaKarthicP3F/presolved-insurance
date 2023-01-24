@@ -133,6 +133,62 @@ class graphHelper {
       .get();
   }
 
+  async createChatBetweenUsers(settings) {
+    // Ensure settings isn't null
+    if (!settings) {
+      throw new Error("Settings cannot be undefined");
+    }
+
+    _settings = settings;
+    this.ensureGraphForAppOnlyAuth();
+
+    // Ensure client isn't undefined
+    if (!_appClient) {
+      throw new Error("Graph has not been initialized for app-only auth");
+    }
+
+    //Siva Teams Object ID - 848c9bb7-36b9-46f1-af04-662a0c379c1b
+    //Presolved Support Teams Object ID - 0b8fd067-f3df-4da9-8bcc-970d671881a3
+    //Sai - 98cf9c0c-46b4-4a68-8fc0-a6789482e068
+    return _appClient.api(`/chats`).post({
+      chatType: "oneOnOne",
+      members: [
+        {
+          "@odata.type": "#microsoft.graph.aadUserConversationMember",
+          roles: ["owner"],
+          "user@odata.bind": `https://graph.microsoft.com/v1.0/users('848c9bb7-36b9-46f1-af04-662a0c379c1b')`,
+        },
+        {
+          "@odata.type": "#microsoft.graph.aadUserConversationMember",
+          roles: ["owner"],
+          "user@odata.bind": `https://graph.microsoft.com/v1.0/users('0b8fd067-f3df-4da9-8bcc-970d671881a3')`,
+        },
+      ],
+    });
+  }
+
+  async sendMessageToChat(chatId, message, settings) {
+    // Ensure settings isn't null
+    if (!settings) {
+      throw new Error("Settings cannot be undefined");
+    }
+
+    _settings = settings;
+    this.ensureGraphForAppOnlyAuth();
+
+    // Ensure client isn't undefined
+    if (!_appClient) {
+      throw new Error("Graph has not been initialized for app-only auth");
+    }
+
+    return _appClient.api(`/chats/${chatId}/messages`).post({
+      body: {
+        contentType: "html",
+        content: message,
+      },
+    });
+  }
+
   async getMessageDetails(email, messageId, settings) {
     // Ensure settings isn't null
     if (!settings) {

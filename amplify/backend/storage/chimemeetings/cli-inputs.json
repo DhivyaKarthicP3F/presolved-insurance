@@ -1,0 +1,10 @@
+{
+  "resourceName": "chimemeetings",
+  "tableName": "chime-meetings",
+  "partitionKey": {
+    "fieldName": "meetingId",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

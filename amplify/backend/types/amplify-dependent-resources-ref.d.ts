@@ -1,46 +1,14 @@
 export type AmplifyDependentResourcesAttributes = {
     "api": {
-        "presolvedinsurance": {
-            "GraphQLAPIKeyOutput": "string",
-            "GraphQLAPIIdOutput": "string",
-            "GraphQLAPIEndpointOutput": "string"
-        },
         "ConnectAPI": {
             "RootUrl": "string",
             "ApiName": "string",
             "ApiId": "string"
-        }
-    },
-    "function": {
-        "presolvedinsurancelayer": {
-            "Arn": "string"
         },
-        "GetUsersList": {
-            "Name": "string",
-            "Arn": "string",
-            "Region": "string",
-            "LambdaExecutionRole": "string"
-        },
-        "presolvedinsurancemsgraph": {
-            "Arn": "string"
-        },
-        "GetMails": {
-            "Name": "string",
-            "Arn": "string",
-            "Region": "string",
-            "LambdaExecutionRole": "string"
-        },
-        "DownloadEmail": {
-            "Name": "string",
-            "Arn": "string",
-            "Region": "string",
-            "LambdaExecutionRole": "string"
-        },
-        "assetsHandler": {
-            "Name": "string",
-            "Arn": "string",
-            "Region": "string",
-            "LambdaExecutionRole": "string"
+        "presolvedinsurance": {
+            "GraphQLAPIKeyOutput": "string",
+            "GraphQLAPIIdOutput": "string",
+            "GraphQLAPIEndpointOutput": "string"
         }
     },
     "auth": {
@@ -52,6 +20,44 @@ export type AmplifyDependentResourcesAttributes = {
             "UserPoolName": "string",
             "AppClientIDWeb": "string",
             "AppClientID": "string"
+        }
+    },
+    "function": {
+        "DownloadEmail": {
+            "Name": "string",
+            "Arn": "string",
+            "Region": "string",
+            "LambdaExecutionRole": "string"
+        },
+        "GetMails": {
+            "Name": "string",
+            "Arn": "string",
+            "Region": "string",
+            "LambdaExecutionRole": "string"
+        },
+        "GetUsersList": {
+            "Name": "string",
+            "Arn": "string",
+            "Region": "string",
+            "LambdaExecutionRole": "string"
+        },
+        "presolvedinsurancelayer": {
+            "Arn": "string"
+        },
+        "presolvedinsurancemsgraph": {
+            "Arn": "string"
+        },
+        "Meetings": {
+            "Name": "string",
+            "Arn": "string",
+            "Region": "string",
+            "LambdaExecutionRole": "string"
+        },
+        "SendChatMessage": {
+            "Name": "string",
+            "Arn": "string",
+            "Region": "string",
+            "LambdaExecutionRole": "string"
         }
     },
     "hosting": {
@@ -69,6 +75,14 @@ export type AmplifyDependentResourcesAttributes = {
     "storage": {
         "psemailbucket": {
             "BucketName": "string",
+            "Region": "string"
+        },
+        "chimemeetings": {
+            "Name": "string",
+            "Arn": "string",
+            "StreamArn": "string",
+            "PartitionKeyName": "string",
+            "PartitionKeyType": "string",
             "Region": "string"
         }
     }
