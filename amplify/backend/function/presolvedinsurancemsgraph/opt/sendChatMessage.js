@@ -19,6 +19,8 @@ async function sendMessage(message, clientId, secretName, region, tenantId) {
 
     const chatPage = await graphHelper.createChatBetweenUsers(settings);
 
+    console.log("Chat Page Response : ", chatPage);
+
     const chatId = chatPage.id;
     const htmlMessageWithLink = `
     <div>        

@@ -31,7 +31,7 @@
         },
         "presolvedinsurancemsgraph": {
           "deploymentBucketName": "amplify-presolvedtenant-test-211355-deployment",
-          "s3Key": "amplify-builds/presolvedinsurancemsgraph-LambdaLayerVersion3ece577d-build.zip"
+          "s3Key": "amplify-builds/presolvedinsurancemsgraph-LambdaLayerVersion63a89e07-build.zip"
         },
         "GetMails": {
           "deploymentBucketName": "amplify-presolvedtenant-test-211355-deployment",
