@@ -463,3 +463,45 @@ export const deleteTenantConfig = /* GraphQL */ `
     }
   }
 `;
+export const createChatChannel = /* GraphQL */ `
+  mutation CreateChatChannel(
+    $input: CreateChatChannelInput!
+    $condition: ModelChatChannelConditionInput
+  ) {
+    createChatChannel(input: $input, condition: $condition) {
+      name
+      data
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateChatChannel = /* GraphQL */ `
+  mutation UpdateChatChannel(
+    $input: UpdateChatChannelInput!
+    $condition: ModelChatChannelConditionInput
+  ) {
+    updateChatChannel(input: $input, condition: $condition) {
+      name
+      data
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteChatChannel = /* GraphQL */ `
+  mutation DeleteChatChannel(
+    $input: DeleteChatChannelInput!
+    $condition: ModelChatChannelConditionInput
+  ) {
+    deleteChatChannel(input: $input, condition: $condition) {
+      name
+      data
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;

@@ -5,7 +5,7 @@ import {CloudDownloadOutlined, AmazonOutlined, UserOutlined, SearchOutlined, Bel
 import { Link, navigate } from '@gatsbyjs/reach-router';
 import { Auth } from 'aws-amplify';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeAgentAvailibility } from '../../../src/dashboard/store/reducers/settings';
+import { changeAgentAvailibility } from '../store/reducers/settings';
 import { logoutUser, updateUser } from '../store/reducers/user';
 
 const AgentMainHeader = (props) => {

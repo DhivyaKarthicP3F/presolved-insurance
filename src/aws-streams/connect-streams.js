@@ -7375,7 +7375,6 @@ AWS.Config = AWS.util.inherit({
  * @see AWS.Config
  */
 AWS.config = new AWS.Config();
-
 },{"./core":19,"./credentials":20,"./credentials/credential_provider_chain":23}],18:[function(require,module,exports){
 (function (process){(function (){
 var AWS = require('./core');

@@ -300,3 +300,32 @@ export const listTenantConfigs = /* GraphQL */ `
     }
   }
 `;
+export const getChatChannel = /* GraphQL */ `
+  query GetChatChannel($id: ID!) {
+    getChatChannel(id: $id) {
+      name
+      data
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listChatChannels = /* GraphQL */ `
+  query ListChatChannels(
+    $filter: ModelChatChannelFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listChatChannels(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        name
+        data
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;

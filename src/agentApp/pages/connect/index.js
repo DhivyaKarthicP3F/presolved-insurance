@@ -42,7 +42,7 @@ const ConnectCCP = (props) => {
           disableRingtone: false, // optional, defaults to false
           ringtoneUrl: "./ringtone.mp3" // optional, defaults to CCP’s default ringtone if a falsy value is set
         },
-        logger: console.clear(), // optional, defaults to connect.getLog()
+ // optional, defaults to connect.getLog()
         ccpAckTimeout: 5000, //optional, defaults to 3000 (ms)
         ccpSynTimeout: 3000, //optional, defaults to 1000 (ms)
         ccpLoadTimeout: 10000 //optional, defaults to 5000 (ms)
