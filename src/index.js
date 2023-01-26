@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import { store } from "./agentApp/store";
 import ChatWigetForTesting from "./playground/chat";
 import AWSSDK from "./playground/connectSDK";
+import AgentSupervisor from "./supervisorApp";
 
 const App = React.lazy(() => import('./agentApp/index'))
 const root = document.getElementById("root");
@@ -20,6 +21,8 @@ ReactDOM.render(
       <Suspense fallback={<Suspence />}>
         <Router basepath="/">
           <App path="/*" />
+          <AgentSupervisor path="/manager/*" />
+          <AgentSupervisor path="/supervisor/*" />
           <ChatWigetForTesting  path="/test/chat/*" />
           <AWSSDK  path="/test/aws/*" />
         </Router>
