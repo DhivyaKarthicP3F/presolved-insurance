@@ -28,6 +28,13 @@
           "delete"
         ]
       }
+    },
+    "/teams": {
+      "name": "/teams",
+      "lambdaFunction": "TeamsHandler",
+      "permissions": {
+        "setting": "open"
+      }
     }
   }
 }

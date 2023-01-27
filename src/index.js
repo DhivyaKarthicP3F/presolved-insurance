@@ -9,29 +9,28 @@ import { store } from "./agentApp/store";
 import ChatWigetForTesting from "./playground/chat";
 import AWSSDK from "./playground/connectSDK";
 import AgentSupervisor from "./supervisorApp";
+import TeamsPlayGround from "./playground/teamsSDK";
 
-const App = React.lazy(() => import('./agentApp/index'))
+const App = React.lazy(() => import("./agentApp/index"));
 const root = document.getElementById("root");
 
 Amplify.configure(oldAwsConfig);
 
 ReactDOM.render(
-
-    <Provider store={store}>
-      <Suspense fallback={<Suspence />}>
-        <Router basepath="/">
-          <App path="/*" />
-          <AgentSupervisor path="/manager/*" />
-          <AgentSupervisor path="/supervisor/*" />
-          <ChatWigetForTesting  path="/test/chat/*" />
-          <AWSSDK  path="/test/aws/*" />
-        </Router>
-      </Suspense>
-    </Provider>,
+  <Provider store={store}>
+    <Suspense fallback={<Suspence />}>
+      <Router basepath="/">
+        <App path="/*" />
+        <AgentSupervisor path="/manager/*" />
+        <AgentSupervisor path="/supervisor/*" />
+        <ChatWigetForTesting path="/test/chat/*" />
+        <AWSSDK path="/test/aws/*" />
+        <TeamsPlayGround path="/test/teams/*" />
+      </Router>
+    </Suspense>
+  </Provider>,
   root
 );
-
-
 
 //to bulk delete
 //data.items.map((rec,index)=>`id${index}:deleteChannel(input: {id: "${rec.id}"}) {id}`).toString()

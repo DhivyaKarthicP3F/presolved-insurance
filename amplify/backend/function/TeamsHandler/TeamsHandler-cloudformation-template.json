@@ -15,22 +15,6 @@
     },
     "s3Key": {
       "Type": "String"
-    },
-    "storagechimemeetingsName": {
-      "Type": "String",
-      "Default": "storagechimemeetingsName"
-    },
-    "storagechimemeetingsArn": {
-      "Type": "String",
-      "Default": "storagechimemeetingsArn"
-    },
-    "storagechimemeetingsStreamArn": {
-      "Type": "String",
-      "Default": "storagechimemeetingsStreamArn"
-    },
-    "functionpresolvedinsurancelayerArn": {
-      "Type": "String",
-      "Default": "functionpresolvedinsurancelayerArn"
     }
   },
   "Conditions": {
@@ -63,12 +47,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "Meetings",
+            "TeamsHandler",
             {
               "Fn::Join": [
                 "",
                 [
-                  "Meetings",
+                  "TeamsHandler",
                   "-",
                   {
                     "Ref": "env"
@@ -85,15 +69,6 @@
             },
             "REGION": {
               "Ref": "AWS::Region"
-            },
-            "STORAGE_CHIMEMEETINGS_NAME": {
-              "Ref": "storagechimemeetingsName"
-            },
-            "STORAGE_CHIMEMEETINGS_ARN": {
-              "Ref": "storagechimemeetingsArn"
-            },
-            "STORAGE_CHIMEMEETINGS_STREAMARN": {
-              "Ref": "storagechimemeetingsStreamArn"
             }
           }
         },
@@ -104,11 +79,7 @@
           ]
         },
         "Runtime": "nodejs14.x",
-        "Layers": [
-          {
-            "Ref": "functionpresolvedinsurancelayerArn"
-          }
-        ],
+        "Layers": [],
         "Timeout": 25
       }
     },
@@ -118,12 +89,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "presolvedtenantLambdaRole64c38667",
+            "presolvedtenantLambdaRolec90151aa",
             {
               "Fn::Join": [
                 "",
                 [
-                  "presolvedtenantLambdaRole64c38667",
+                  "presolvedtenantLambdaRolec90151aa",
                   "-",
                   {
                     "Ref": "env"
@@ -193,96 +164,6 @@
           ]
         }
       }
-    },
-    "AmplifyResourcesPolicy": {
-      "DependsOn": [
-        "LambdaExecutionRole"
-      ],
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyName": "amplify-lambda-execution-policy",
-        "Roles": [
-          {
-            "Ref": "LambdaExecutionRole"
-          }
-        ],
-        "PolicyDocument": {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Effect": "Allow",
-              "Action": [
-                "dynamodb:Put*",
-                "dynamodb:Create*",
-                "dynamodb:BatchWriteItem",
-                "dynamodb:Get*",
-                "dynamodb:BatchGetItem",
-                "dynamodb:List*",
-                "dynamodb:Describe*",
-                "dynamodb:Scan",
-                "dynamodb:Query",
-                "dynamodb:Update*",
-                "dynamodb:RestoreTable*",
-                "dynamodb:Delete*"
-              ],
-              "Resource": [
-                {
-                  "Ref": "storagechimemeetingsArn"
-                },
-                {
-                  "Fn::Join": [
-                    "/",
-                    [
-                      {
-                        "Ref": "storagechimemeetingsArn"
-                      },
-                      "index/*"
-                    ]
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      }
-    },
-    "CustomLambdaExecutionPolicy": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyName": "custom-lambda-execution-policy",
-        "PolicyDocument": {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Action": [
-                "chime:CreateMeeting",
-                "chime:CreateAttendee",
-                "chime:DeleteAttendee",
-                "chime:DeleteMeeting",
-                "chime:DescribeMeeting",
-                "chime:DescribeAttendee",
-                "chime:GetMeeting",
-                "chime:GetAttendee",
-                "chime:ListMeetings",
-                "chime:ListAttendees",
-                "chime:UpdateMeeting",
-                "chime:UpdateAttendee"
-              ],
-              "Resource": [
-                "arn:aws:chime:*:*:meeting/*",
-                "arn:aws:chime:*:*:attendee/*"
-              ],
-              "Effect": "Allow"
-            }
-          ]
-        },
-        "Roles": [
-          {
-            "Ref": "LambdaExecutionRole"
-          }
-        ]
-      },
-      "DependsOn": "LambdaExecutionRole"
     }
   },
   "Outputs": {
@@ -307,14 +188,6 @@
     "LambdaExecutionRole": {
       "Value": {
         "Ref": "LambdaExecutionRole"
-      }
-    },
-    "LambdaExecutionRoleArn": {
-      "Value": {
-        "Fn::GetAtt": [
-          "LambdaExecutionRole",
-          "Arn"
-        ]
       }
     }
   }

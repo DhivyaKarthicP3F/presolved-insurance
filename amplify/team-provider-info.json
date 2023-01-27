@@ -17,33 +17,21 @@
         "presolvedinsurance": {}
       },
       "storage": {
-        "psemailbucket": {},
-        "chimemeetings": {}
+        "chimemeetings": {},
+        "psemailbucket": {}
       },
       "function": {
-        "presolvedinsurancelayer": {
+        "DownloadEmail": {
           "deploymentBucketName": "amplify-presolvedtenant-test-211355-deployment",
-          "s3Key": "amplify-builds/presolvedinsurancelayer-LambdaLayerVersion13063f5c-build.zip"
-        },
-        "GetUsersList": {
-          "deploymentBucketName": "amplify-presolvedtenant-test-211355-deployment",
-          "s3Key": "amplify-builds/GetUsersList-3135375a2f32646b4b45-build.zip"
-        },
-        "presolvedinsurancemsgraph": {
-          "deploymentBucketName": "amplify-presolvedtenant-test-211355-deployment",
-          "s3Key": "amplify-builds/presolvedinsurancemsgraph-LambdaLayerVersion63a89e07-build.zip"
+          "s3Key": "amplify-builds/DownloadEmail-364951714d466f4c5a38-build.zip"
         },
         "GetMails": {
           "deploymentBucketName": "amplify-presolvedtenant-test-211355-deployment",
           "s3Key": "amplify-builds/GetMails-486754474862456a5571-build.zip"
         },
-        "DownloadEmail": {
+        "GetUsersList": {
           "deploymentBucketName": "amplify-presolvedtenant-test-211355-deployment",
-          "s3Key": "amplify-builds/DownloadEmail-364951714d466f4c5a38-build.zip"
-        },
-        "assetsHandler": {
-          "deploymentBucketName": "amplify-presolvedtenant-test-211355-deployment",
-          "s3Key": "amplify-builds/assetsHandler-34327554427a33383159-build.zip"
+          "s3Key": "amplify-builds/GetUsersList-3135375a2f32646b4b45-build.zip"
         },
         "Meetings": {
           "deploymentBucketName": "amplify-presolvedtenant-test-211355-deployment",
@@ -52,17 +40,29 @@
         "SendChatMessage": {
           "deploymentBucketName": "amplify-presolvedtenant-test-211355-deployment",
           "s3Key": "amplify-builds/SendChatMessage-306b313569413368642b-build.zip"
+        },
+        "presolvedinsurancelayer": {
+          "deploymentBucketName": "amplify-presolvedtenant-test-211355-deployment",
+          "s3Key": "amplify-builds/presolvedinsurancelayer-LambdaLayerVersionda3120b9-build.zip"
+        },
+        "presolvedinsurancemsgraph": {
+          "deploymentBucketName": "amplify-presolvedtenant-test-211355-deployment",
+          "s3Key": "amplify-builds/presolvedinsurancemsgraph-LambdaLayerVersionc6c40eff-build.zip"
+        },
+        "TeamsHandler": {
+          "deploymentBucketName": "amplify-presolvedtenant-test-211355-deployment",
+          "s3Key": "amplify-builds/TeamsHandler-4b6a5377504a4d4b6152-build.zip"
         }
       },
       "api": {
-        "presolvedinsurance": {},
-        "ConnectAPI": {}
-      },
-      "hosting": {
-        "S3AndCloudFront": {}
+        "ConnectAPI": {},
+        "presolvedinsurance": {}
       },
       "custom": {
         "PSEventBridge": {}
+      },
+      "hosting": {
+        "S3AndCloudFront": {}
       }
     }
   }

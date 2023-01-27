@@ -17,6 +17,14 @@
             "Name",
             "Arn"
           ]
+        },
+        {
+          "category": "function",
+          "resourceName": "TeamsHandler",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -77,7 +85,8 @@
             "Name",
             "Arn",
             "Region",
-            "LambdaExecutionRole"
+            "LambdaExecutionRole",
+            "LambdaExecutionRoleArn"
           ]
         },
         {
@@ -87,7 +96,8 @@
             "Name",
             "Arn",
             "Region",
-            "LambdaExecutionRole"
+            "LambdaExecutionRole",
+            "LambdaExecutionRoleArn"
           ]
         }
       ],
@@ -132,6 +142,43 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
+    "Meetings": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "presolvedinsurancelayer"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ],
+          "category": "storage",
+          "resourceName": "chimemeetings"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "SendChatMessage": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "presolvedinsurancemsgraph"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "presolvedinsurancelayer": {
       "build": true,
       "providerPlugin": "awscloudformation",
@@ -142,42 +189,10 @@
       "providerPlugin": "awscloudformation",
       "service": "LambdaLayer"
     },
-    "Meetings": {
+    "TeamsHandler": {
       "build": true,
       "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": [
-        {
-          "category": "function",
-          "resourceName": "presolvedinsurancelayer",
-          "attributes": [
-            "Arn"
-          ]
-        },
-        {
-          "category": "storage",
-          "resourceName": "chimemeetings",
-          "attributes": [
-            "Name",
-            "Arn",
-            "StreamArn"
-          ]
-        }
-      ]
-    },
-    "SendChatMessage": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": [
-        {
-          "category": "function",
-          "resourceName": "presolvedinsurancemsgraph",
-          "attributes": [
-            "Arn"
-          ]
-        }
-      ]
+      "service": "Lambda"
     }
   },
   "hosting": {
@@ -235,6 +250,38 @@
         }
       ]
     },
+    "AMPLIFY_function_Meetings_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "Meetings"
+        }
+      ]
+    },
+    "AMPLIFY_function_Meetings_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "Meetings"
+        }
+      ]
+    },
+    "AMPLIFY_function_SendChatMessage_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "SendChatMessage"
+        }
+      ]
+    },
+    "AMPLIFY_function_SendChatMessage_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "SendChatMessage"
+        }
+      ]
+    },
     "AMPLIFY_function_assetsHandler_deploymentBucketName": {
       "usedBy": [
         {
@@ -285,14 +332,14 @@
     }
   },
   "storage": {
+    "chimemeetings": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
+    },
     "psemailbucket": {
       "dependsOn": [],
       "providerPlugin": "awscloudformation",
       "service": "S3"
-    },
-    "chimemeetings": {
-      "service": "DynamoDB",
-      "providerPlugin": "awscloudformation"
     }
   }
 }
