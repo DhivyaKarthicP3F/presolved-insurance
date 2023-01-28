@@ -11,7 +11,7 @@ const connectUrl = "https://p3fusion-qa.my.connect.aws/connect/ccp-v2/";
 import CustomCCP from './api';
 
 const AWSSDK = () => {
-  let ccp = new CustomCCP(connect)
+  let ccp =null;
   const container = useRef(null);
   const [state, setState] = React.useState({
     ccpError: null,
@@ -23,6 +23,7 @@ const AWSSDK = () => {
   useEffect(() => initiateCCP(), [])
 
   const initiateCCP = () => {
+    ccp = new CustomCCP(connect)
     ccp.initiateCCP(container.current).then((res) => {
       setState({ ...state, initiated: true })
     }).catch((err) => {

@@ -3,7 +3,7 @@ import { PhoneOutlined } from '@ant-design/icons';
 import { Avatar, Space, Typography, Statistic, Button, Drawer } from 'antd';
 import '../../assets/stylesheet/dialer.less'
 import { RxArrowRight } from 'react-icons/rx';
-import { RenderCustomer360 } from '.';
+import  RenderCustomer360  from "./renderCustomer360";
 
 
 

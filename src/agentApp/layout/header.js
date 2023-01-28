@@ -2,7 +2,7 @@ import { Layout, theme, Space, Button, Badge, Avatar,Spin , Typography, Dropdown
 import React, { useState, useEffect } from 'react'
 import logo from '../assets/images/p3f-logo.png'
 import {CloudDownloadOutlined, AmazonOutlined, UserOutlined, SearchOutlined, BellOutlined, QuestionOutlined, PoweroffOutlined } from '@ant-design/icons';
-import { Link, navigate } from '@gatsbyjs/reach-router';
+import { Link, navigate } from '@reach/router';
 import { Auth } from 'aws-amplify';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeAgentAvailibility } from '../store/reducers/settings';

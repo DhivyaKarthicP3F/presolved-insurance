@@ -24,18 +24,19 @@ class CustomCCP {
                     ccpSynTimeout: 3000, //optional, defaults to 1000 (ms)
                     ccpLoadTimeout: 10000 //optional, defaults to 5000 (ms)
                 });
-                const interval = setInterval(async () => {
-                    connect.getLog().warn(`Presolved::CCP::Polling to get the login status ${i}`);
+
+                const pollInterval = setInterval(async () => {
+                    console.info(`Presolved::CCP::Polling to get the login status ${i}`);
                     if (connect.agent.initialized) {                        
-                        connect.getLog().warn(`Presolved::CCP::Login success stoppping the poll`);                    
-                        clearInterval(interval)
+                        clearInterval(pollInterval)
+                        console.info(`Presolved::CCP::Login success stoppping the poll`);                    
                         resolve(true)
                     }   
-                    if (i > 30) {
+                   /*  if (i > 30) {
                         clearInterval(interval)
                         connect.getLog().warn(`Presolved::CCP::Login failed stoppping the poll`);
                         reject("Login failed")
-                    }
+                    } */
                     i++;
                 }, 1000);
             } catch (error) {

@@ -8,7 +8,7 @@ import { changeAgentAvailibility, updateSettings } from '../../store/reducers/se
 import { addNewChannel } from '../../store/reducers/channels'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { navigate } from '@gatsbyjs/reach-router'
+import { navigate } from '@reach/router'
 import ccpOperations from './ccpOperations'
 import { createChannel } from './api'
 import '../../../aws-streams/connect-streams'
@@ -32,7 +32,7 @@ const ConnectCCP = (props) => {
 
   const initiateCCP = () => {
 
-    if (ccp.current) {
+    if (user.isLoggedin && ccp.current) {
       connect.agentApp.initCCP(ccp.current, {
         ccpUrl: connectUrl, // REQUIRED
         region: "us-east-1", // REQUIRED for `CHAT`, optional otherwise
@@ -42,7 +42,7 @@ const ConnectCCP = (props) => {
           disableRingtone: false, // optional, defaults to false
           ringtoneUrl: "./ringtone.mp3" // optional, defaults to CCP’s default ringtone if a falsy value is set
         },
- // optional, defaults to connect.getLog()
+        // optional, defaults to connect.getLog()
         ccpAckTimeout: 5000, //optional, defaults to 3000 (ms)
         ccpSynTimeout: 3000, //optional, defaults to 1000 (ms)
         ccpLoadTimeout: 10000 //optional, defaults to 5000 (ms)
@@ -58,7 +58,11 @@ const ConnectCCP = (props) => {
 
     }
 
+  
+
   }
+
+
 
   const listenIncomingActivities = () => {
     let sttate = setState
@@ -102,12 +106,12 @@ const ConnectCCP = (props) => {
       contact.onIncoming(function (ctx) {
         let contactAttributes = ctx._getData()
         console.log("Presolved::connect::contact::onRefresh::", contactAttributes);
-       });
+      });
 
-      contact.onRefresh(function (ctx) { 
+      contact.onRefresh(function (ctx) {
         let contactAttributes = ctx._getData()
         console.log("Presolved::connect::contact::onRefresh::", contactAttributes);
-        dispatch(updateSettings({contactDuration:contactAttributes.contactDuration}))
+        dispatch(updateSettings({ contactDuration: contactAttributes.contactDuration }))
       });
 
       contact.onAccepted(function (ctx) {
@@ -126,7 +130,7 @@ const ConnectCCP = (props) => {
           channelType: contactData.type,
           contactAttributes: { ...contactData, userProfile }
         }
-        
+
         dispatch(updateCalls({ isActive: true, ...contactData, userProfile }))
         setState({ ...state, channel: createChannel })
 
@@ -173,14 +177,14 @@ const ConnectCCP = (props) => {
 
   const getRandomObjectFromArray = () => {
     let array = userProfilesMock()
-    let customerProfile= array[Math.floor(Math.random() * array.length)];
+    let customerProfile = array[Math.floor(Math.random() * array.length)];
     return {
       customerProfile,
-      recentHistory:recentHistory(),
-      customer360:customer360(),
-      activeProducts:activeProducts(),
-      policyDetails:policyDetails(),
-      
+      recentHistory: recentHistory(),
+      customer360: customer360(),
+      activeProducts: activeProducts(),
+      policyDetails: policyDetails(),
+
     }
   }
 
@@ -188,7 +192,7 @@ const ConnectCCP = (props) => {
 
   return (
     <section className='connect-widget'>
-      <div ref={ccp} style={{ height: 0,  width: 0, visibility: 'hidden'  }}></div>
+      <div ref={ccp} style={{ height: 0, width: 0, visibility: 'hidden' }}></div>
     </section>
   )
 }

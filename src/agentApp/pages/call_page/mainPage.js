@@ -1,8 +1,8 @@
 import { Alert, Card, Col, Empty, Result, Row, Space, Typography } from 'antd'
 import React from 'react'
-import { RecentHistory } from '.'
+import  RecentHistory  from "./recentHistory"
 import '../../assets/stylesheet/callMainPage.less'
-import { recentHistory } from '../../mock/customerProfiles'
+
 const CallMainPage = ({ activeProducts, recentHistory }) => {
     return (
         <section className='call-main-page'>

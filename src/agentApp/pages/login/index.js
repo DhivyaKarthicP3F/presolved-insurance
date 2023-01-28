@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Layout, Typography, Space, Avatar, Card, Divider, Button, Spin } from 'antd';
+import { Layout, Typography, Space, Avatar, Card, Divider, Button, Spin, Row, Col } from 'antd';
 import { VscUnlock } from "react-icons/vsc";
 import { RxPerson } from 'react-icons/rx';
 import { Auth, Hub, Amplify, } from "aws-amplify";
@@ -7,8 +7,8 @@ import oldAwsConfig from '../../../aws-exports'
 import '../../assets/stylesheet/login.less'
 import { useDispatch } from 'react-redux';
 import { updateUser } from '../../store/reducers/user';
-import { navigate } from '@gatsbyjs/reach-router';
-
+import { navigate } from '@reach/router';
+import logo from '../../assets/images/p3f-logo.png'
 const isLocalhost = Boolean(
     window.location.hostname === "localhost" ||
     // [::1] is the IPv6 localhost address.
@@ -64,7 +64,7 @@ const AgentSAMLPage = () => {
 
     useEffect(() => {
         Amplify.configure(updatedAwsConfig);
-       
+
         Auth.currentAuthenticatedUser()
             .then((login) => {
                 setState({ ...state, isLoggedin: true });
@@ -91,10 +91,18 @@ const AgentSAMLPage = () => {
             <main className='login-container'>
 
                 <section className='main'>
+
                     <div className='main-container'>
-                        <Card>
+
+                        <Card >
                             <div className='userinfo'>
-                                <Space size={30}>
+                                <Row style={{ margin: 30 }} align='middle' justify='center'>
+                                    <Col flex={1} >
+                                        <img src={logo} height={52} />
+                                    </Col>
+                                </Row>
+                                <Divider />
+                                <Space size={20}>
                                     <Avatar icon={<RxPerson />} size={60} />
                                     <Space direction='vertical' size={0} align="start">
                                         <Typography.Title level={2}>Hi Guest</Typography.Title>
@@ -104,8 +112,8 @@ const AgentSAMLPage = () => {
                                 </Space>
                             </div>
                             <div>
-                                <Divider />
-                                <Typography.Title level={3}>Authentication is required to access the portal</Typography.Title>
+                                
+                                <Typography.Title style={{ marginBottom: 30, marginTop:30 }} level={3}>Authentication is required to access the portal</Typography.Title>
                                 <Typography.Paragraph>
                                     Single sign-on (SSO) is an authentication method that enables users to securely authenticate with multiple applications and websites by using just one set of credentials.
                                 </Typography.Paragraph>

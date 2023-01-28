@@ -8,22 +8,22 @@ class CCPOperations {
         return new Promise((resolve, reject) => {
             const { connect } = this
             let i = 0;
-            const interval = setInterval(async () => {
+            const PollInterval = setInterval(async () => {
                 console.log(`Presolved::CCP::Polling to get the login status ${i}`);
                 if (connect.agent.initialized) {
-                    clearInterval(interval)
+                    clearInterval(PollInterval)
                     console.log(`Presolved::CCP::Login success stoppping the poll`);
                     let agentInfo = await this.getAgentInfoFromConnect();
                     resolve(agentInfo)
                 }
                 if (i > 30) {
-                    clearInterval(interval)
+                    clearInterval(PollInterval)
                     console.log(`Presolved::CCP::Login failed stoppping the poll`);
                     reject(true)
                 }
                 i++;
             }, 1000);
-        })
+        }) 
     }
     getAgentInfoFromConnect() {
         return new Promise((resolve, reject) => {
@@ -36,7 +36,7 @@ class CCPOperations {
                 console.log(`Presolved::CCP::completed loading the Agent information`);
                 resolve({ info: agentData.configuration, status: currentState })
             });
-        })
+        }) 
     }
 }
 
