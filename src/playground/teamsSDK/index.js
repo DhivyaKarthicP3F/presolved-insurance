@@ -6,6 +6,9 @@ import React from "react";
 
 let CLIENT_ID = "32c21b01-f645-4433-8726-456c9f46958e";
 
+//Teams Bot App Client ID
+//CLIENT_ID = "1dc3388e-4cf8-4c0e-af71-70eda90a9f03";
+
 // Configuration object constructed.
 const config = {
   auth: {
