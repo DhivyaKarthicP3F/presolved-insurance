@@ -8,7 +8,7 @@
 .amplify - Copy
 # testing
 /coverage
-
+/cypress/screenshots
 # production
 /build
 

@@ -7,7 +7,7 @@ import oldAwsConfig from '../../../aws-exports'
 import '../../assets/stylesheet/login.less'
 import { useDispatch } from 'react-redux';
 import { updateUser } from '../../store/reducers/user';
-import { navigate } from '@reach/router';
+import { navigate } from '@gatsbyjs/reach-router';
 import logo from '../../assets/images/p3f-logo.png'
 const isLocalhost = Boolean(
     window.location.hostname === "localhost" ||

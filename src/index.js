@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
-import { navigate, Router } from "@reach/router";
+import { navigate, Router } from "@gatsbyjs/reach-router";
 import { Amplify, Auth } from "aws-amplify";
 import oldAwsConfig from "./aws-exports";
 import Suspence from "./widgets/suspence";

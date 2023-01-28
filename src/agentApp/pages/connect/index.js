@@ -8,7 +8,7 @@ import { changeAgentAvailibility, updateSettings } from '../../store/reducers/se
 import { addNewChannel } from '../../store/reducers/channels'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { navigate } from '@reach/router'
+import { navigate } from '@gatsbyjs/reach-router'
 import ccpOperations from './ccpOperations'
 import { createChannel } from './api'
 import '../../../aws-streams/connect-streams'
