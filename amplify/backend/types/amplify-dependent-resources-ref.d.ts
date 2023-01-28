@@ -27,19 +27,36 @@ export type AmplifyDependentResourcesAttributes = {
             "Name": "string",
             "Arn": "string",
             "Region": "string",
-            "LambdaExecutionRole": "string"
+            "LambdaExecutionRole": "string",
+            "LambdaExecutionRoleArn": "string"
         },
         "GetMails": {
             "Name": "string",
             "Arn": "string",
             "Region": "string",
-            "LambdaExecutionRole": "string"
+            "LambdaExecutionRole": "string",
+            "LambdaExecutionRoleArn": "string"
         },
         "GetUsersList": {
             "Name": "string",
             "Arn": "string",
             "Region": "string",
-            "LambdaExecutionRole": "string"
+            "LambdaExecutionRole": "string",
+            "LambdaExecutionRoleArn": "string"
+        },
+        "Meetings": {
+            "Name": "string",
+            "Arn": "string",
+            "Region": "string",
+            "LambdaExecutionRole": "string",
+            "LambdaExecutionRoleArn": "string"
+        },
+        "SendChatMessage": {
+            "Name": "string",
+            "Arn": "string",
+            "Region": "string",
+            "LambdaExecutionRole": "string",
+            "LambdaExecutionRoleArn": "string"
         },
         "presolvedinsurancelayer": {
             "Arn": "string"
@@ -47,13 +64,7 @@ export type AmplifyDependentResourcesAttributes = {
         "presolvedinsurancemsgraph": {
             "Arn": "string"
         },
-        "Meetings": {
-            "Name": "string",
-            "Arn": "string",
-            "Region": "string",
-            "LambdaExecutionRole": "string"
-        },
-        "SendChatMessage": {
+        "TeamsHandler": {
             "Name": "string",
             "Arn": "string",
             "Region": "string",
@@ -73,16 +84,16 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "storage": {
-        "psemailbucket": {
-            "BucketName": "string",
-            "Region": "string"
-        },
         "chimemeetings": {
             "Name": "string",
             "Arn": "string",
             "StreamArn": "string",
             "PartitionKeyName": "string",
             "PartitionKeyType": "string",
+            "Region": "string"
+        },
+        "psemailbucket": {
+            "BucketName": "string",
             "Region": "string"
         }
     }
