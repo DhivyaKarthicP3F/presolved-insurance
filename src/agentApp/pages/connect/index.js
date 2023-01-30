@@ -23,9 +23,9 @@ const ConnectCCP = (props) => {
   const dispatch = useDispatch()
   const user = useSelector((state) => state.user);
   const ccp = useRef(null);
-
+  let acceptedCtx = new Map();
   const [state, setState] = useState({
-    channel: null,
+    channel: null,    
   })
 
   useEffect(() => initiateCCP(), [])
@@ -55,20 +55,15 @@ const ConnectCCP = (props) => {
         dispatch(updateSettings({ ccpInitiated: true }))
         listenIncomingActivities()
       });
-
     }
-
-  
-
   }
 
 
 
   const listenIncomingActivities = () => {
-    let sttate = setState
 
     connect.contact(function (contact) {
-
+      setState({...state,contacts:contact})
       contact.onConnecting(function (ctx) {
         console.log("Presolved::connect::contact::onConnecting::", contact);
         var contactData = ctx._getData()
@@ -94,7 +89,7 @@ const ConnectCCP = (props) => {
         })
 
 
-        sttate({ ...state, showCallNotification: true })
+        setState({ ...state, showCallNotification: true })
         /*  let settings = {
              eventName: "onConnecting",
              activeTask: contactData,
@@ -126,12 +121,12 @@ const ConnectCCP = (props) => {
         let createChannel = {
           notes: "New call picked by " + user?.attributes?.email || "",
           assignTo: " ",
-          contactID: contactData.contactId,
-          channelType: contactData.type,
-          contactAttributes: { ...contactData, userProfile }
+          contactID: contactAttributes.contactId,
+          channelType: contactAttributes.type,
+          contactAttributes: { ...contactAttributes, userProfile }
         }
 
-        dispatch(updateCalls({ isActive: true, ...contactData, userProfile }))
+        dispatch(updateCalls({ isActive: true, ...contactAttributes, userProfile, contact: contact }))
         setState({ ...state, channel: createChannel })
 
 
@@ -165,12 +160,15 @@ const ConnectCCP = (props) => {
       contact.onConnected(function (ctx) {
         console.log("Presolved::connect::contact::onConnected::", ctx);
         let contactData = ctx._getData()
-        let userProfile = getRandomObjectFromArray()
-
-        dispatch(updateCalls({ isActive: true, ...contactData, userProfile }))
-        setState({ ...state, channel: contactData })
+        /*  let userProfile = getRandomObjectFromArray()
+ 
+         dispatch(updateCalls({ isActive: true, ...contactData, userProfile }))
+         setState({ ...state, channel: contactData }) */
 
       });
+
+
+
     });
 
   }
@@ -188,11 +186,26 @@ const ConnectCCP = (props) => {
     }
   }
 
+  const endCall = () => {
 
+    connect.contact((contact) => {
+      contact.getAgentConnection().destroy({
+        success: function () {
+          logInfoMsg("Disconnected contact via Streams");
+        },
+        failure: function () {
+          logInfoMsg("Failed to disconnect contact via Streams");
+        }
+      });
+    })
+
+  }
 
   return (
     <section className='connect-widget'>
-      <div ref={ccp} style={{ height: 0, width: 0, visibility: 'hidden' }}></div>
+      <Button block danger onClick={() => endCall()} >End Call</Button>
+      <div ref={ccp} style={{ height: 500, width: '100%', visibility: '' }}></div>
+
     </section>
   )
 }

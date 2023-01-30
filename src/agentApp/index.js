@@ -58,14 +58,14 @@ const AppIndexPage = () => {
         <AgentSAMLPage path="/*" />
         :
         <Layout className='master'>
-          <ConnectCCP user={user} />
+          
           <AgentMainHeader />
           <Router >
             <AgentHomePage path="/*" />
             <AgentSAMLPage path="/login/*" />
           </Router>
-          <Button onClick={() => generateAlphaNueric(12)}>Logout</Button>
 
+          <ConnectCCP user={user} />
         </Layout>
       }
     </ConfigProvider>

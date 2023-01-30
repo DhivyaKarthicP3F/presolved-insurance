@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { PhoneOutlined } from '@ant-design/icons';
-import { Avatar, Space, Typography, Statistic, Button, Drawer } from 'antd';
-import '../../assets/stylesheet/dialer.less'
+import { PhoneOutlined, PauseOutlined, AudioMutedOutlined } from '@ant-design/icons';
+import { Avatar, Space, Typography, Statistic, Button, Drawer, Row, Col } from 'antd';
+import './dialer.less'
 import { RxArrowRight } from 'react-icons/rx';
-import  RenderCustomer360  from "./renderCustomer360";
+import RenderCustomer360 from "./renderCustomer360";
 
 
 
@@ -11,7 +11,6 @@ const DialerSection = ({ activeCall }) => {
     const [visible, setVisible] = useState(false)
     return (
         <div className="agent-main-dialer-section">
-
             <div className='userinfo'>
                 <Space size={10}>
                     <Avatar size={54} src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80' />
@@ -23,6 +22,19 @@ const DialerSection = ({ activeCall }) => {
             </div>
 
             <div className='dialercontainer'>
+                <Row gutter={[16,16]}>
+                    <Col span={24}>
+                        <Space>
+                            <Button type='default' icon={<PauseOutlined />} >Hold</Button>
+                            <Button type='link' icon={<AudioMutedOutlined />} >Mute</Button>
+                        </Space>
+                    </Col>
+                    <Col span={24}>
+                        <Button block danger type='primary' icon={<PhoneOutlined />} > End Call</Button>
+                    </Col>
+
+                </Row>
+
             </div>
 
             <div className='contact-attributes'>
@@ -47,7 +59,7 @@ const DialerSection = ({ activeCall }) => {
                         <Typography.Text>Status</Typography.Text>
                         <Typography.Text strong>{activeCall.userProfile.customer360.Status}</Typography.Text>
                     </Space>
-                    <Button onClick={()=>setVisible(true)} type='link' >Know More &nbsp;<RxArrowRight style={{ verticalAlign: 'middle' }} /></Button>
+                    <Button onClick={() => setVisible(true)} type='link' >Know More &nbsp;<RxArrowRight style={{ verticalAlign: 'middle' }} /></Button>
                 </Space>
                 <Drawer className='customer-360-drawer' open={visible} title="Customer Details" onClose={() => setVisible(false)} placement='right' width={640}>
                     <RenderCustomer360 customer360={activeCall.userProfile.customer360} />

@@ -5,12 +5,12 @@ import { customer360 } from '../../mock/customerProfiles';
 const AgentDashboard = () => {
     return (
         <section className='agent_dashboard'>
-            <Result 
+           {/*  <Result 
            title="Please wait while we load the dashboard . . ."
            subTitle="This may take a few seconds"
            icon={<Empty />}
-              /> 
-          {/* <ActiveCallPage {...activeCall} /> */}
+              /> */} 
+          <ActiveCallPage {...activeCall} />
         </section>
     )
 }

@@ -8,7 +8,7 @@ import CallMainPage from './mainPage';
 
 const ActiveCallPage = (props) => {
 
-    const activeCall =  useSelector((state) => state.activeCall) //props
+    const activeCall =  props.userProfile ?  props : useSelector((state) => state.activeCall) //props
     const { userProfile } = activeCall;
 
     const [state, setState] = useState({
