@@ -3,14 +3,7 @@ import React, { useState, createContext, useRef, useEffect } from 'react'
 import { Auth } from 'aws-amplify';
 import { Button, Divider } from 'antd';
 
-export const CustomCCPWidgetContext = createContext({
-    connect: null,
-    CCPInitiated: false,
-    userLoggedIn: false,
-    user: null,
-    contact: new Map(),
-    agent: null,
-})
+export const CustomCCPWidgetContext = createContext()
 
 export const CustomCCPWidgetProvider = ({ children }) => {
     const ccp = useRef(null);

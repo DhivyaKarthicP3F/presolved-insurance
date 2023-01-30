@@ -1,12 +1,14 @@
-import { Button, Space } from 'antd'
+import { Avatar, Button, Col, Divider, Modal, Row, Space, Typography } from 'antd'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { CustomCCPWidgetContext } from './connect'
-
+import popupImage from '../../agentApp/assets/images/animated/phone.gif'
+import './dialer.less'
 const DialerApp = () => {
 
-    const { agent, contact, CCPInitiated, userLoggedIn, user,  } = useContext(CustomCCPWidgetContext)
+    const { agent, contact, CCPInitiated, userLoggedIn, user, } = useContext(CustomCCPWidgetContext)
     const [state, setState] = useState({
         isDialerInitiated: false,
+        showPopUp: true,
     })
     useEffect(() => {
         if (CCPInitiated) {
@@ -17,29 +19,44 @@ const DialerApp = () => {
 
     const accept = () => {
 
-        connect.contact((contact) => {
+        //connect.contact((contact) => {
+        if (contact) {
             contact.accept()
-        })
+        }
+        //})
 
     }
     const end = () => {
-
-        connect.agent(async function (agent) {
-            if (contact) {
-                var initialConnection = contact.getInitialConnection();
-                console.log({ initialConnection });
-                if (initialConnection) {
-                    initialConnection.destroy();
-                    contact.clear();
-                }
+        if (contact) {
+            var initialConnection = contact.getInitialConnection();
+            console.log({ initialConnection });
+            if (initialConnection) {
+                initialConnection.destroy();
+                contact.clear();
             }
-        });
+        }
+        /*  connect.agent(async function (agent) {
+             if (contact) {
+                 var initialConnection = contact.getInitialConnection();
+                 console.log({ initialConnection });
+                 if (initialConnection) {
+                     initialConnection.destroy();
+                     contact.clear();
+                 }
+             }
+         }); */
 
     }
 
     const muteCall = () => {
-        agent.mute()
+        connect.agent(async function (agent) {
+            if (agent) {
+                agent.mute()
+            }
+        });
+        setState({ ...state, showPopUp: true })
     }
+
 
 
 
@@ -59,6 +76,37 @@ const DialerApp = () => {
                     </Space>
                 </section>
             }
+            <Modal width={300} className="incoming-alert" open={state.showPopUp} onCancel={() => setState({ ...state, showPopUp: false })} footer={null}>
+                <div className='popup-container'>
+                    <div className='items'>
+                        <div className="poup-image">
+                            <Avatar gap={10} style={{ backgroundColor: '#f5f5f5', }} size={200} shape='circle' icon={<img src={popupImage} />} />
+                        </div>
+                    </div>
+                    <Divider />
+                    <div className='items'>
+                        <Typography.Title level={5} >New Vocie call</Typography.Title>
+                        <Typography.Title level={3} >John Doe</Typography.Title>
+                    </div>
+                    <div className='items'>
+                        <Typography.Title level={5} >Phone #</Typography.Title>
+                        <Typography.Title level={3} >+1 9715463635</Typography.Title>
+                    </div>
+                    <Divider />
+                    <div className='items'>
+
+                    <Space direction='vertical'>
+                        <Button size='large' block type='primary' onClick={() => accept()}>Accept</Button>
+                        <Button size='large' block type='primary' danger onClick={() => end()}>Reject</Button>
+                        <Button size='large' block type='dashed'  onClick={() => setState({ ...state, showPopUp: false })}>Ignore</Button>
+                    </Space>
+                    </div>
+                </div>
+               
+
+
+
+            </Modal>
         </section>
 
     )
