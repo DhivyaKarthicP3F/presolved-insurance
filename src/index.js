@@ -7,14 +7,14 @@ import Suspence from "./widgets/suspence";
 import { Provider } from "react-redux";
 import { store } from "./agentApp/store";
 import AWSSDK from "./playground/connectSDK";
+import TeamsSDK from "./playground/teamsSDK";
 import AgentSupervisor from "./supervisorApp";
 
-const App = React.lazy(() => import('./agentApp/index'))
 const ChatWigetForTesting = React.lazy(() => import('./playground/chat'))
+const App = React.lazy(() => import("./agentApp/index"));
 const root = document.getElementById("root");
 
 Amplify.configure(oldAwsConfig);
-
 
 ReactDOM.render(
   <Provider store={store}>
@@ -25,13 +25,12 @@ ReactDOM.render(
         <AgentSupervisor path="/supervisor/*" />
         <ChatWigetForTesting path="/test/chat/*" />
         <AWSSDK path="/test/aws/*" />
+        <TeamsSDK path="/test/teams/*" />
       </Router>
     </Suspense>
   </Provider>,
   root
 );
-
-
 
 //to bulk delete
 //data.items.map((rec,index)=>`id${index}:deleteChannel(input: {id: "${rec.id}"}) {id}`).toString()

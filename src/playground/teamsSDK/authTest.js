@@ -187,7 +187,7 @@ function createCalendarTeamsMeeting(accessToken) {
       {
         type: "required",
         emailAddress: {
-          address: "k.sai@p3fusion.com",
+          address: "venkat.ramasamy@p3fusion.com",
         },
       },
     ],
@@ -225,6 +225,7 @@ function createCalendarTeamsMeeting(accessToken) {
 function ProtectedComponent() {
   const { instance, inProgress, accounts } = useMsal();
   const [apiData, setApiData] = useState(null);
+  const [accessToken, setAccessToken] = useState(null);
 
   useEffect(() => {
     if (!apiData && inProgress === InteractionStatus.None) {
@@ -238,11 +239,9 @@ function ProtectedComponent() {
           // Acquire token silent success
           let accessToken = accessTokenResponse.accessToken;
           console.log("Access Token is " + accessToken);
+          setAccessToken(accessToken);
           // Call your API with token
-          createCalendarTeamsMeeting(accessToken).then((response) => {
-            console.log("API response: ", response);
-            //setApiData(response);
-          });
+
           /*createTeamsOnlineMeeting(accessToken).then((response) => {
             console.log("API response: ", response);
             let meetingId = response.id;
@@ -282,7 +281,79 @@ function ProtectedComponent() {
     }
   }, [instance, accounts, inProgress, apiData]);
 
-  return <p>Return your protected content here: {apiData}</p>;
+  return (
+    <div>
+      <h1>Protected Component</h1>
+      <div>
+        <button
+          onClick={() => {
+            callAPI(accessToken).then((response) => {
+              console.log("API response: ", response);
+              setApiData(response);
+            });
+          }}
+        >
+          Get My Status
+        </button>
+        <button
+          onClick={() => {
+            createTeamsMeeting(accessToken).then((response) => {
+              console.log("API response: ", response);
+              setApiData(response);
+            });
+          }}
+        >
+          Create Non Calendar Teams Meeting
+        </button>
+        {/* List Chats Button */}
+        <button
+          onClick={() => {
+            callChatAPI(accessToken).then((response) => {
+              console.log("API response: ", response);
+              setApiData(response);
+            });
+          }}
+        >
+          List Chats
+        </button>
+        {/* Send Chat Button */}
+        <button
+          onClick={() => {
+            callChatAPI(accessToken).then((response) => {
+              console.log("API response: ", response);
+              setApiData(response);
+            });
+          }}
+        >
+          Send Chat
+        </button>
+
+        <button
+          onClick={() => {
+            createTeamsOnlineMeeting(accessToken).then((response) => {
+              console.log("API response: ", response);
+              let meetingId = response.id;
+              console.log("Meeting Id is ", meetingId);
+              updateTeamsOnlineMeeting(accessToken, meetingId).then(
+                (response) => {
+                  console.log("API response: ", response);
+                }
+              );
+              setApiData(response);
+            });
+          }}
+        >
+          Create Teams Meeting
+        </button>
+      </div>
+      <p>
+        API Response:
+        <pre>
+          <code>{JSON.stringify(apiData, null, 2)}</code>
+        </pre>
+      </p>
+    </div>
+  );
 }
 
 function App() {
