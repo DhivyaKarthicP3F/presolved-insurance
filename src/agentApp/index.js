@@ -8,7 +8,8 @@ import { useSelector } from 'react-redux';
 import { Auth } from 'aws-amplify';
 import { useDispatch } from 'react-redux';
 import { updateUser } from './store/reducers/user';
-import ConnectCCP from './pages/connect';
+/* import ConnectCCP from './pages/connect'; */
+import { CustomCCPWidgetProvider } from './pages/customCCP';
 
 const AgentHomePage = React.lazy(() => import('./pages/agent_home'))
 const AgentSAMLPage = React.lazy(() => import('./pages/login'))
@@ -57,16 +58,16 @@ const AppIndexPage = () => {
       {!state.authenticated ?
         <AgentSAMLPage path="/*" />
         :
-        <Layout className='master'>
-          
-          <AgentMainHeader />
-          <Router >
-            <AgentHomePage path="/*" />
-            <AgentSAMLPage path="/login/*" />
-          </Router>
-
-          <ConnectCCP user={user} />
-        </Layout>
+        <CustomCCPWidgetProvider>
+          <Layout className='master'>
+            <AgentMainHeader />
+            <Router >
+              <AgentHomePage path="/*" />
+              <AgentSAMLPage path="/login/*" />
+            </Router>
+           {/*  <ConnectCCP user={user} /> */}
+          </Layout>
+        </CustomCCPWidgetProvider>
       }
     </ConfigProvider>
   )

@@ -9,43 +9,33 @@ const DialerApp = () => {
     const [state, setState] = useState({
         isDialerInitiated: false,
         showPopUp: true,
+        contact
     })
     useEffect(() => {
         if (CCPInitiated) {
             setState({ ...state, isDialerInitiated: true })
         }
-    }, [CCPInitiated, contact])
-
+    }, [CCPInitiated])
+    useEffect(() => setState({ ...state, contact }), [contact])
 
     const accept = () => {
 
         //connect.contact((contact) => {
-        if (contact) {
-            contact.accept()
+        if (state.contact) {
+            state.contact.accept()
         }
         //})
 
     }
     const end = () => {
-        if (contact) {
-            var initialConnection = contact.getInitialConnection();
+        if (state.contact) {
+            var initialConnection = state.contact.getInitialConnection();
             console.log({ initialConnection });
             if (initialConnection) {
                 initialConnection.destroy();
-                contact.clear();
+                state.contact.clear();
             }
-        }
-        /*  connect.agent(async function (agent) {
-             if (contact) {
-                 var initialConnection = contact.getInitialConnection();
-                 console.log({ initialConnection });
-                 if (initialConnection) {
-                     initialConnection.destroy();
-                     contact.clear();
-                 }
-             }
-         }); */
-
+        }    
     }
 
     const muteCall = () => {
@@ -58,6 +48,17 @@ const DialerApp = () => {
     }
 
 
+    const holdCall=()=>{
+        contact.toggleActiveConnections({
+            success: function (success) {
+                console.log({hold:success});
+            },
+            failure: function (err) {
+                console.log({hold:err});
+            }
+        })
+
+    }
 
 
     return (
@@ -95,14 +96,14 @@ const DialerApp = () => {
                     <Divider />
                     <div className='items'>
 
-                    <Space direction='vertical'>
-                        <Button size='large' block type='primary' onClick={() => accept()}>Accept</Button>
-                        <Button size='large' block type='primary' danger onClick={() => end()}>Reject</Button>
-                        <Button size='large' block type='dashed'  onClick={() => setState({ ...state, showPopUp: false })}>Ignore</Button>
-                    </Space>
+                        <Space direction='vertical'>
+                            <Button size='large' block type='primary' onClick={() => accept()}>Accept</Button>
+                            <Button size='large' block type='primary' danger onClick={() => end()}>Reject</Button>
+                            <Button size='large' block type='dashed' onClick={() => setState({ ...state, showPopUp: false })}>Ignore</Button>
+                        </Space>
                     </div>
                 </div>
-               
+
 
 
 

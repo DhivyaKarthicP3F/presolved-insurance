@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Layout, Tabs, Space, Typography } from 'antd';
 const { Content } = Layout;
 import { HomeOutlined, PhoneOutlined } from '@ant-design/icons';
 import AgentDashboard from './dashboard';
 import { useSelector } from 'react-redux';
 import ActiveCallPage from '../call_page';
+import { CustomCCPWidgetContext } from '../customCCP';
 
 const AgentHomePage = (props) => {
 
-  const activeCall = useSelector((state) => state.activeCall);
+  const { agent, contact, CCPInitiated, userLoggedIn, user, activeCall } = useContext(CustomCCPWidgetContext)
+
+  //const activeCall = useSelector((state) => state.activeCall);
   const [state, setState] = useState({
     isActive: false,
     activeKey: 'home',
@@ -21,7 +24,7 @@ const AgentHomePage = (props) => {
 
 
   useEffect(() => {
-    if (activeCall.isActive) {
+    if (activeCall) {
       let items = [
         ...state.items,
         {
@@ -32,7 +35,7 @@ const AgentHomePage = (props) => {
       ]
       setState({ ...activeCall, items, activeKey: 'newcall' })
     }
-  }, [activeCall])
+  }, [activeCall,contact])
 
 
 

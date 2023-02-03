@@ -6,11 +6,11 @@ import oldAwsConfig from "./aws-exports";
 import Suspence from "./widgets/suspence";
 import { Provider } from "react-redux";
 import { store } from "./agentApp/store";
-import ChatWigetForTesting from "./playground/chat";
 import AWSSDK from "./playground/connectSDK";
 import AgentSupervisor from "./supervisorApp";
 
 const App = React.lazy(() => import('./agentApp/index'))
+const ChatWigetForTesting = React.lazy(() => import('./playground/chat'))
 const root = document.getElementById("root");
 
 Amplify.configure(oldAwsConfig);

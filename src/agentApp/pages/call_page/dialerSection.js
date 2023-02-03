@@ -1,14 +1,52 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { PhoneOutlined, PauseOutlined, AudioMutedOutlined } from '@ant-design/icons';
-import { Avatar, Space, Typography, Statistic, Button, Drawer, Row, Col } from 'antd';
+import { Avatar, Space, Typography, Statistic, Button, Drawer, Row, Col, theme } from 'antd';
 import './dialer.less'
 import { RxArrowRight } from 'react-icons/rx';
 import RenderCustomer360 from "./renderCustomer360";
+import { CustomCCPWidgetContext } from '../customCCP';
 
 
-
+const { useToken } = theme;
 const DialerSection = ({ activeCall }) => {
     const [visible, setVisible] = useState(false)
+    const [mute, setMute] = useState(false)
+    const [hold, setHold] = useState(false)
+    const [destroy, setDestroy] = useState(false)
+
+    const { token } = useToken();
+    const { muteCall, contact } = useContext(CustomCCPWidgetContext)
+
+    const endCall = () => {
+        contact.getAgentConnection().destroy({
+            success: async function () {
+                setDestroy(true)
+                var thirdParty = contact.getSingleActiveThirdPartyConnection();
+                if (thirdParty) {
+                    thirdParty.destroy();
+                    await sleep(1000);
+                }
+            },
+            failure: function () {
+                console.error("Failed to disconnect contact via Streams");
+            }
+        });
+    }
+
+    const holdCall = () => {
+
+        contact.hold({
+            success: function () {
+                console.log("Contact is now on hold");
+            },
+            failure: function () {
+                console.error("Failed to put contact on hold");
+            }
+        })
+
+
+    }
+
     return (
         <div className="agent-main-dialer-section">
             <div className='userinfo'>
@@ -22,15 +60,20 @@ const DialerSection = ({ activeCall }) => {
             </div>
 
             <div className='dialercontainer'>
-                <Row gutter={[16,16]}>
+                <Row gutter={[16, 16]}>
                     <Col span={24}>
                         <Space>
-                            <Button type='default' icon={<PauseOutlined />} >Hold</Button>
-                            <Button type='link' icon={<AudioMutedOutlined />} >Mute</Button>
+                            <Button onClick={holdCall} type='default' icon={<PauseOutlined />} >Hold</Button>
+                            <Button onClick={muteCall} type='link' icon={<AudioMutedOutlined />} >Mute</Button>
                         </Space>
                     </Col>
                     <Col span={24}>
-                        <Button block danger type='primary' icon={<PhoneOutlined />} > End Call</Button>
+                        {!destroy ?
+                            <Button block danger type='primary' onClick={endCall} icon={<PhoneOutlined />} > End Call</Button>
+                            :
+                            <Button block type='primary' style={{ background: token.colorSuccess }} onClick={endCall} icon={<PhoneOutlined />} > Close Contact</Button>
+                        }
+
                     </Col>
 
                 </Row>
