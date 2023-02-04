@@ -28,10 +28,14 @@ let chatID =
 let chatID2 =
   "19:0c57cef7-bce7-425b-9547-3fc9477ff9c3_848c9bb7-36b9-46f1-af04-662a0c379c1b@unq.gbl.spaces";
 
+//Chat with Khizar
+let ChatID3 =
+  "19:6ff1f1e4-74d0-4652-b9ce-47b54bab8d6b_848c9bb7-36b9-46f1-af04-662a0c379c1b@unq.gbl.spaces";
+
 let sivaID = "848c9bb7-36b9-46f1-af04-662a0c379c1b";
 
 function sendChatMessage(accessToken) {
-  return fetch(`https://graph.microsoft.com/v1.0/chats/${chatID2}/messages`, {
+  return fetch(`https://graph.microsoft.com/v1.0/chats/${ChatID3}/messages`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${accessToken}`,
@@ -187,7 +191,7 @@ function createCalendarTeamsMeeting(accessToken) {
       {
         type: "required",
         emailAddress: {
-          address: "venkat.ramasamy@p3fusion.com",
+          address: "a.khizar@p3fusion.com",
         },
       },
     ],
@@ -319,7 +323,7 @@ function ProtectedComponent() {
         {/* Send Chat Button */}
         <button
           onClick={() => {
-            callChatAPI(accessToken).then((response) => {
+            sendChatMessage(accessToken).then((response) => {
               console.log("API response: ", response);
               setApiData(response);
             });
@@ -330,7 +334,7 @@ function ProtectedComponent() {
 
         <button
           onClick={() => {
-            createTeamsOnlineMeeting(accessToken).then((response) => {
+            createCalendarTeamsMeeting(accessToken).then((response) => {
               console.log("API response: ", response);
               let meetingId = response.id;
               console.log("Meeting Id is ", meetingId);
