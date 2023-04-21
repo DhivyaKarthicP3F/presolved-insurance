@@ -1,4 +1,4 @@
-## Get Started -  presolved-insurance
+## Get Started -  presolved insurance
 
 ### installation / Instructions to setup on your local
 
