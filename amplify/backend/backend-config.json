@@ -1,30 +1,44 @@
 {
   "api": {
+    "Connect": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "ConnectUsers"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    },
     "ConnectAPI": {
       "dependsOn": [
         {
-          "category": "function",
-          "resourceName": "GetUsersList",
           "attributes": [
             "Name",
             "Arn"
-          ]
+          ],
+          "category": "function",
+          "resourceName": "GetUsersList"
         },
         {
-          "category": "function",
-          "resourceName": "Meetings",
           "attributes": [
             "Name",
             "Arn"
-          ]
+          ],
+          "category": "function",
+          "resourceName": "Meetings"
         },
         {
-          "category": "function",
-          "resourceName": "TeamsHandler",
           "attributes": [
             "Name",
             "Arn"
-          ]
+          ],
+          "category": "function",
+          "resourceName": "TeamsHandler"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -73,32 +87,48 @@
       "providerPlugin": "awscloudformation",
       "service": "Cognito",
       "serviceType": "managed"
+    },
+    "userPoolGroups": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId",
+            "AppClientIDWeb",
+            "AppClientID",
+            "IdentityPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "presolvedinsurance"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito-UserPool-Groups"
     }
   },
   "custom": {
     "PSEventBridge": {
       "dependsOn": [
         {
-          "category": "function",
-          "resourceName": "GetMails",
           "attributes": [
             "Name",
             "Arn",
             "Region",
             "LambdaExecutionRole",
             "LambdaExecutionRoleArn"
-          ]
+          ],
+          "category": "function",
+          "resourceName": "GetMails"
         },
         {
-          "category": "function",
-          "resourceName": "DownloadEmail",
           "attributes": [
             "Name",
             "Arn",
             "Region",
             "LambdaExecutionRole",
             "LambdaExecutionRoleArn"
-          ]
+          ],
+          "category": "function",
+          "resourceName": "DownloadEmail"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -106,6 +136,12 @@
     }
   },
   "function": {
+    "ConnectUsers": {
+      "build": true,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "DownloadEmail": {
       "build": true,
       "dependsOn": [
@@ -179,6 +215,11 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
+    "TeamsHandler": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "presolvedinsurancelayer": {
       "build": true,
       "providerPlugin": "awscloudformation",
@@ -188,11 +229,6 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "LambdaLayer"
-    },
-    "TeamsHandler": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
     }
   },
   "hosting": {
@@ -202,6 +238,22 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_ConnectUsers_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "ConnectUsers"
+        }
+      ]
+    },
+    "AMPLIFY_function_ConnectUsers_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "ConnectUsers"
+        }
+      ]
+    },
     "AMPLIFY_function_DownloadEmail_deploymentBucketName": {
       "usedBy": [
         {
@@ -282,19 +334,19 @@
         }
       ]
     },
-    "AMPLIFY_function_assetsHandler_deploymentBucketName": {
+    "AMPLIFY_function_TeamsHandler_deploymentBucketName": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "assetsHandler"
+          "resourceName": "TeamsHandler"
         }
       ]
     },
-    "AMPLIFY_function_assetsHandler_s3Key": {
+    "AMPLIFY_function_TeamsHandler_s3Key": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "assetsHandler"
+          "resourceName": "TeamsHandler"
         }
       ]
     },

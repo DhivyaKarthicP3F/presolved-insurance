@@ -2,7 +2,7 @@
   "version": "1",
   "cognitoConfig": {
     "identityPoolName": "presolvedinsurance_identitypool_23183491",
-    "allowUnauthenticatedIdentities": true,
+    "allowUnauthenticatedIdentities": false,
     "resourceNameTruncated": "presol23183491",
     "userPoolName": "presolvedinsurance_userpool_23183491",
     "autoVerifiedAttributes": [
@@ -37,7 +37,7 @@
     "resourceName": "presolvedinsurance",
     "sharedId": "23183491",
     "serviceName": "Cognito",
-    "useDefault": "default",
+    "useDefault": "manual",
     "authRoleArn": {
       "Fn::GetAtt": [
         "AuthRole",
@@ -53,8 +53,22 @@
     "breakCircularDependency": true,
     "useEnabledMfas": true,
     "dependsOn": [],
-    "hostedUI": false,
-    "userPoolGroupList": [],
-    "authProviders": []
+    "hostedUI": true,
+    "userPoolGroupList": [
+      "presolvedusers"
+    ],
+    "authProviders": [],
+    "thirdPartyAuth": true,
+    "userPoolGroups": true,
+    "adminQueries": false,
+    "triggers": {},
+    "hostedUIDomainName": "presolvedtenant0632935b-0632935b",
+    "authProvidersUserPool": [],
+    "hostedUIProviderMeta": "[]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://localhost:3000/login/\"],\"LogoutURLs\":[\"https://localhost:3000/logout/\"]}",
+    "parentStack": {
+      "Ref": "AWS::StackId"
+    },
+    "permissions": []
   }
 }

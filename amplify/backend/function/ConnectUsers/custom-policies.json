@@ -1,0 +1,6 @@
+[
+  {
+    "Action": ["connect:*"],
+    "Resource": ["arn:aws:connect:*:*:instance/*"]
+  }
+]

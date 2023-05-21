@@ -43,26 +43,110 @@
         },
         "presolvedinsurancelayer": {
           "deploymentBucketName": "amplify-presolvedtenant-test-211355-deployment",
-          "s3Key": "amplify-builds/presolvedinsurancelayer-LambdaLayerVersionda3120b9-build.zip"
+          "s3Key": "amplify-builds/presolvedinsurancelayer-LambdaLayerVersiona5747ab7-build.zip"
         },
         "presolvedinsurancemsgraph": {
           "deploymentBucketName": "amplify-presolvedtenant-test-211355-deployment",
-          "s3Key": "amplify-builds/presolvedinsurancemsgraph-LambdaLayerVersionc6c40eff-build.zip"
+          "s3Key": "amplify-builds/presolvedinsurancemsgraph-LambdaLayerVersion9b3f3186-build.zip"
         },
         "TeamsHandler": {
           "deploymentBucketName": "amplify-presolvedtenant-test-211355-deployment",
-          "s3Key": "amplify-builds/TeamsHandler-4b6a5377504a4d4b6152-build.zip"
-        }
+          "s3Key": "amplify-builds/TeamsHandler-6565762f575a5858487a-build.zip"
+        },
+        "ConnectUsers": {
+          "deploymentBucketName": "amplify-presolvedtenant-test-211355-deployment",
+          "s3Key": "amplify-builds/ConnectUsers-4a35696e6a3533387753-build.zip"
+        },
+        "psemailbucket": {},
+        "presolvedinsurance": {},
+        "chimemeetings": {}
       },
       "api": {
         "ConnectAPI": {},
-        "presolvedinsurance": {}
+        "presolvedinsurance": {},
+        "Connect": {}
       },
       "custom": {
         "PSEventBridge": {}
       },
       "hosting": {
         "S3AndCloudFront": {}
+      }
+    }
+  },
+  "qa": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-presolvedtenant-qa-193014-authRole",
+      "UnauthRoleArn": "arn:aws:iam::039289871235:role/amplify-presolvedtenant-qa-193014-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::039289871235:role/amplify-presolvedtenant-qa-193014-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-presolvedtenant-qa-193014-deployment",
+      "UnauthRoleName": "amplify-presolvedtenant-qa-193014-unauthRole",
+      "StackName": "amplify-presolvedtenant-qa-193014",
+      "StackId": "arn:aws:cloudformation:us-east-1:039289871235:stack/amplify-presolvedtenant-qa-193014/052e9620-a9b4-11ed-b546-0e69374a54e3",
+      "AmplifyAppId": "d1nla2nbfpliwq",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-presolvedtenant-qa-193014-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
+    },
+    "categories": {
+      "auth": {
+        "presolvedinsurance": {},
+        "userPoolGroups": {}
+      },
+      "function": {
+        "DownloadEmail": {
+          "deploymentBucketName": "amplify-presolvedtenant-qa-193014-deployment",
+          "s3Key": "amplify-builds/DownloadEmail-364951714d466f4c5a38-build.zip"
+        },
+        "GetMails": {
+          "deploymentBucketName": "amplify-presolvedtenant-qa-193014-deployment",
+          "s3Key": "amplify-builds/GetMails-486754474862456a5571-build.zip"
+        },
+        "GetUsersList": {
+          "deploymentBucketName": "amplify-presolvedtenant-qa-193014-deployment",
+          "s3Key": "amplify-builds/GetUsersList-3135375a2f32646b4b45-build.zip"
+        },
+        "Meetings": {
+          "deploymentBucketName": "amplify-presolvedtenant-qa-193014-deployment",
+          "s3Key": "amplify-builds/Meetings-344f4336312f43783078-build.zip"
+        },
+        "SendChatMessage": {
+          "deploymentBucketName": "amplify-presolvedtenant-qa-193014-deployment",
+          "s3Key": "amplify-builds/SendChatMessage-306b313569413368642b-build.zip"
+        },
+        "TeamsHandler": {
+          "deploymentBucketName": "amplify-presolvedtenant-qa-193014-deployment",
+          "s3Key": "amplify-builds/TeamsHandler-6565762f575a5858487a-build.zip"
+        },
+        "presolvedinsurancelayer": {
+          "deploymentBucketName": "amplify-presolvedtenant-qa-193014-deployment",
+          "s3Key": "amplify-builds/presolvedinsurancelayer-LambdaLayerVersione6381cf0-build.zip"
+        },
+        "presolvedinsurancemsgraph": {
+          "deploymentBucketName": "amplify-presolvedtenant-qa-193014-deployment",
+          "s3Key": "amplify-builds/presolvedinsurancemsgraph-LambdaLayerVersion4564b0f4-build.zip"
+        },
+        "ConnectUsers": {
+          "deploymentBucketName": "amplify-presolvedtenant-qa-193014-deployment",
+          "s3Key": "amplify-builds/ConnectUsers-4a35696e6a3533387753-build.zip"
+        },
+        "psemailbucket": {},
+        "presolvedinsurance": {},
+        "chimemeetings": {}
+      },
+      "api": {
+        "ConnectAPI": {},
+        "presolvedinsurance": {},
+        "Connect": {}
+      },
+      "custom": {
+        "PSEventBridge": {}
+      },
+      "hosting": {
+        "S3AndCloudFront": {}
+      },
+      "storage": {
+        "chimemeetings": {},
+        "psemailbucket": {}
       }
     }
   }

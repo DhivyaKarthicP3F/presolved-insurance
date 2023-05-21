@@ -34,6 +34,83 @@ let ChatID3 =
 
 let sivaID = "848c9bb7-36b9-46f1-af04-662a0c379c1b";
 
+function createChat(accessToken, currentUserId, otherUserId) {
+  return fetch("https://graph.microsoft.com/v1.0/chats", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      members: [
+        {
+          "@odata.type": "#microsoft.graph.aadUserConversationMember",
+          roles: ["owner"],
+          user: {
+            "@odata.type": "#microsoft.graph.identitySet",
+            id: currentUserId,
+          },
+        },
+        {
+          "@odata.type": "#microsoft.graph.aadUserConversationMember",
+          roles: ["owner"],
+          user: {
+            "@odata.type": "#microsoft.graph.identitySet",
+            id: otherUserId,
+          },
+        },
+      ],
+    }),
+  }).then((response) => response.json());
+}
+
+function getPresenceForUserIds(accessToken) {
+  let userIds = [
+    "848c9bb7-36b9-46f1-af04-662a0c379c1b",
+    "08db5da9-8f57-41cf-b6b5-a4782b679842",
+  ];
+  return fetch(
+    `https://graph.microsoft.com/v1.0/communications/getPresencesByUserId`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ids: userIds,
+      }),
+    }
+  ).then((response) => response.json());
+}
+
+function subscribeToChatMessages(accessToken) {
+  //Chat with prema
+  let dateString = Date.now() + 1000 * 60 * 60;
+
+  //Convert to ISO String
+  dateString = new Date(dateString).toISOString();
+
+  console.log("dateString", dateString);
+  let chatID =
+    "19:848c9bb7-36b9-46f1-af04-662a0c379c1b_9bed9874-24bb-469d-a45f-ad7ad74ffd39@unq.gbl.spaces";
+  return fetch(`https://graph.microsoft.com/v1.0/subscriptions`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      changeType: "created",
+      notificationUrl:
+        "https://td7y4pmq4a.execute-api.us-east-1.amazonaws.com/staging/api/msgraph/subscription",
+      resource: `chats/${chatID}/messages`,
+      expirationDateTime: dateString,
+      clientState: "secretClientValue",
+    }),
+  }).then((response) => response.json());
+}
+
 function sendChatMessage(accessToken) {
   return fetch(`https://graph.microsoft.com/v1.0/chats/${ChatID3}/messages`, {
     method: "POST",
@@ -234,14 +311,17 @@ function ProtectedComponent() {
   useEffect(() => {
     if (!apiData && inProgress === InteractionStatus.None) {
       const accessTokenRequest = {
-        scopes: ["user.read"],
+        scopes: ["User.Read"],
         account: accounts[0],
       };
       instance
         .acquireTokenSilent(accessTokenRequest)
         .then((accessTokenResponse) => {
           // Acquire token silent success
+          console.log("Access Token Response: ", accessTokenResponse);
           let accessToken = accessTokenResponse.accessToken;
+          let refreshToken = accessTokenResponse.refreshToken;
+          console.log("Refresh Token is " + refreshToken);
           console.log("Access Token is " + accessToken);
           setAccessToken(accessToken);
           // Call your API with token
@@ -348,6 +428,28 @@ function ProtectedComponent() {
           }}
         >
           Create Teams Meeting
+        </button>
+
+        <button
+          onClick={() => {
+            getPresenceForUserIds(accessToken).then((response) => {
+              console.log("API response: ", response);
+              setApiData(response);
+            });
+          }}
+        >
+          Get Presence for users
+        </button>
+
+        <button
+          onClick={() => {
+            subscribeToChatMessages(accessToken).then((response) => {
+              console.log("API response: ", response);
+              setApiData(response);
+            });
+          }}
+        >
+          Subscribe to Chat Messages
         </button>
       </div>
       <p>

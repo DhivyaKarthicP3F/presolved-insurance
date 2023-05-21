@@ -8,9 +8,10 @@ import { Provider } from "react-redux";
 import { store } from "./agentApp/store";
 import AWSSDK from "./playground/connectSDK";
 import TeamsSDK from "./playground/teamsSDK";
+import ACSSDK from "./playground/acsSDK";
 import AgentSupervisor from "./supervisorApp";
 
-const ChatWigetForTesting = React.lazy(() => import('./playground/chat'))
+const ChatWigetForTesting = React.lazy(() => import("./playground/chat"));
 const App = React.lazy(() => import("./agentApp/index"));
 const root = document.getElementById("root");
 
@@ -26,6 +27,7 @@ ReactDOM.render(
         <ChatWigetForTesting path="/test/chat/*" />
         <AWSSDK path="/test/aws/*" />
         <TeamsSDK path="/test/teams/*" />
+        <ACSSDK path="/test/acs/*" />
       </Router>
     </Suspense>
   </Provider>,
